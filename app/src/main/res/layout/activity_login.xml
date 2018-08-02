@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_main_gradient"
+    tools:context=".SplashActivity"
+    >
+
+  <android.support.v7.widget.Toolbar
+      android:id="@+id/toolbar"
+      android:layout_width="0dp"
+      android:layout_height="50dp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:navigationIcon="@drawable/ic_back"
+      >
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/forgotPasswordTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginEnd="@dimen/material_content_edge_margin_horizontal"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/label_forgot_password"
+        android:textColor="@color/material_color_white"
+        />
+
+  </android.support.v7.widget.Toolbar>
+
+  <android.support.v7.widget.AppCompatTextView
+      android:id="@+id/appCompatTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="24dp"
+      android:text="@string/label_login"
+      android:textColor="@color/material_color_white"
+      android:textSize="@dimen/material_typography_dense_display_1_text_size"
+      app:fontFamily="@font/lato_bold"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/toolbar"
+      />
+
+  <android.support.v7.widget.AppCompatTextView
+      android:id="@+id/appCompatTextView2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="24dp"
+      android:layout_marginTop="32dp"
+      android:text="@string/label_email_address"
+      android:textColor="@color/material_color_white"
+      android:textSize="@dimen/material_typography_locale_caption_text_size"
+      app:fontFamily="@font/lato_bold"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/appCompatTextView"
+      app:textAllCaps="true"
+      />
+
+  <android.support.v7.widget.AppCompatEditText
+      android:id="@+id/emailAddressEditText"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="20dp"
+      android:layout_marginStart="20dp"
+      android:backgroundTint="@color/material_color_white_50_percent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/appCompatTextView2"
+      />
+
+  <android.support.v7.widget.AppCompatTextView
+      android:id="@+id/appCompatTextView3"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="24dp"
+      android:layout_marginTop="16dp"
+      android:text="@string/label_password"
+      android:textColor="@color/material_color_white"
+      android:textSize="@dimen/material_typography_locale_caption_text_size"
+      app:fontFamily="@font/lato_bold"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/emailAddressEditText"
+      app:textAllCaps="true"
+      />
+
+  <TextSwitcher
+      android:id="@+id/showPasswordTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="24dp"
+      android:layout_marginTop="16dp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/emailAddressEditText"
+      >
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_show"
+        android:textColor="@color/material_color_white"
+        android:textSize="@dimen/material_typography_locale_caption_text_size"
+        app:fontFamily="@font/lato_bold"
+        />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_hide"
+        android:textColor="@color/material_color_white"
+        android:textSize="@dimen/material_typography_locale_caption_text_size"
+        app:fontFamily="@font/lato_bold"
+        />
+  </TextSwitcher>
+
+  <android.support.v7.widget.AppCompatEditText
+      android:id="@+id/passwordEditText"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="20dp"
+      android:layout_marginStart="20dp"
+      android:backgroundTint="@color/material_color_white_50_percent"
+      android:inputType="textPassword"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/appCompatTextView3"
+      />
+
+  <android.support.design.widget.FloatingActionButton
+      android:id="@+id/confirmFabButton"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="24dp"
+      android:layout_marginEnd="24dp"
+      android:clickable="true"
+      app:backgroundTint="@color/material_color_white_20_percent"
+      app:elevation="0dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:srcCompat="@drawable/ic_next"
+      />
+
+
+</android.support.constraint.ConstraintLayout>
