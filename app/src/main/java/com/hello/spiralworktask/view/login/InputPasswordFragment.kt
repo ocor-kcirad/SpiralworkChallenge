@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.hello.spiralworktask.R
 import kotlinx.android.synthetic.main.fragment_input_password.confirmFabButton
 import kotlinx.android.synthetic.main.fragment_input_password.passwordEditText
+import kotlinx.android.synthetic.main.fragment_input_password.toolbar
 
 class InputPasswordFragment : Fragment() {
 
@@ -26,6 +27,7 @@ class InputPasswordFragment : Fragment() {
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
+    toolbar.setNavigationOnClickListener { listener?.onBackButtonClicked() }
     confirmFabButton.setOnClickListener {
       listener?.onSubmitPassword(
           passwordEditText.text.toString()
@@ -49,6 +51,7 @@ class InputPasswordFragment : Fragment() {
 
   interface InputPasswordInteraction {
     fun onSubmitPassword(password: String)
+    fun onBackButtonClicked()
   }
 
 }

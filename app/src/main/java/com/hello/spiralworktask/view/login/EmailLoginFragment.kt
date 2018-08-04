@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.hello.spiralworktask.R
 import kotlinx.android.synthetic.main.fragment_email_login.forgotPasswordTextView
 import kotlinx.android.synthetic.main.fragment_email_login.showPasswordTextView
+import kotlinx.android.synthetic.main.fragment_email_login.toolbar
 
 class EmailLoginFragment : Fragment() {
 
@@ -16,7 +17,7 @@ class EmailLoginFragment : Fragment() {
     fun newInstance(): EmailLoginFragment = EmailLoginFragment()
   }
 
-  private var mListener: EmailLoginInteraction? = null
+  private var listener: EmailLoginInteraction? = null
 
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -26,7 +27,8 @@ class EmailLoginFragment : Fragment() {
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
-    forgotPasswordTextView.setOnClickListener { mListener?.onForgotPasswordClicked() }
+    toolbar.setNavigationOnClickListener { listener?.onBackButtonClicked()}
+    forgotPasswordTextView.setOnClickListener { listener?.onForgotPasswordClicked() }
     showPasswordTextView.setOnClickListener {
       showPasswordTextView.showNext()
     }
@@ -35,7 +37,7 @@ class EmailLoginFragment : Fragment() {
   override fun onAttach(context: Context?) {
     super.onAttach(context)
     if (context is EmailLoginInteraction) {
-      mListener = context
+      listener = context
     } else {
       throw RuntimeException(context!!.toString() + " must implement EmailLoginInteraction")
     }
@@ -43,11 +45,12 @@ class EmailLoginFragment : Fragment() {
 
   override fun onDetach() {
     super.onDetach()
-    mListener = null
+    listener = null
   }
 
   interface EmailLoginInteraction {
     fun onForgotPasswordClicked()
+    fun onBackButtonClicked()
   }
 
 }

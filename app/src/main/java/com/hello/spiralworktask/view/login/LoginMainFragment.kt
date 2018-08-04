@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.hello.spiralworktask.R
 import kotlinx.android.synthetic.main.fragment_login_main.createAccountTextView
 import kotlinx.android.synthetic.main.fragment_login_main.loginTextView
+import kotlinx.android.synthetic.main.fragment_login_main.toolbar
 
 class LoginMainFragment : Fragment() {
 
@@ -28,6 +29,7 @@ class LoginMainFragment : Fragment() {
     super.onActivityCreated(savedInstanceState)
     loginTextView.setOnClickListener { listener?.onLoginClicked() }
     createAccountTextView.setOnClickListener { listener?.onCreateAccountClicked() }
+    toolbar.setNavigationOnClickListener { listener?.onCloseButtonClicked()}
   }
 
   override fun onAttach(context: Context?) {
@@ -47,6 +49,7 @@ class LoginMainFragment : Fragment() {
   interface LoginMainInteraction {
     fun onLoginClicked()
     fun onCreateAccountClicked()
+    fun onCloseButtonClicked()
   }
 
 }

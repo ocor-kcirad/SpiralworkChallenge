@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.hello.spiralworktask.R
 import kotlinx.android.synthetic.main.fragment_input_email.confirmFabButton
 import kotlinx.android.synthetic.main.fragment_input_email.emailAddressEditText
+import kotlinx.android.synthetic.main.fragment_input_email.toolbar
 
 class InputEmailFragment : Fragment() {
 
@@ -26,6 +27,7 @@ class InputEmailFragment : Fragment() {
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
+    toolbar.setNavigationOnClickListener { listener?.onBackButtonClicked() }
     confirmFabButton.setOnClickListener {
       listener?.onSubmitEmail(emailAddressEditText.text.toString())
     }
@@ -47,6 +49,7 @@ class InputEmailFragment : Fragment() {
 
   interface InputEmailInteraction {
     fun onSubmitEmail(email: String)
+    fun onBackButtonClicked()
   }
 
 }

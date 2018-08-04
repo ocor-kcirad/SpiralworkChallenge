@@ -10,6 +10,7 @@ import com.hello.spiralworktask.R
 import kotlinx.android.synthetic.main.fragment_input_details.confirmFabButton
 import kotlinx.android.synthetic.main.fragment_input_details.firstNameEditText
 import kotlinx.android.synthetic.main.fragment_input_details.lastNameEditText
+import kotlinx.android.synthetic.main.fragment_input_details.toolbar
 
 class InputDetailsFragment : Fragment() {
 
@@ -17,7 +18,7 @@ class InputDetailsFragment : Fragment() {
     fun newInstance(): InputDetailsFragment = InputDetailsFragment()
   }
 
-  private var mListener: InputDetailsInteraction? = null
+  private var listener: InputDetailsInteraction? = null
 
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -27,8 +28,9 @@ class InputDetailsFragment : Fragment() {
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
+    toolbar.setNavigationOnClickListener { listener?.onBackButtonClicked() }
     confirmFabButton.setOnClickListener {
-      mListener?.onSubmitDetails(
+      listener?.onSubmitDetails(
           firstNameEditText.text.toString(), lastNameEditText.text.toString()
       )
     }
@@ -37,7 +39,7 @@ class InputDetailsFragment : Fragment() {
   override fun onAttach(context: Context?) {
     super.onAttach(context)
     if (context is InputDetailsInteraction) {
-      mListener = context
+      listener = context
     } else {
       throw RuntimeException(context!!.toString() + " must implement InputDetailsInteraction")
     }
@@ -45,7 +47,7 @@ class InputDetailsFragment : Fragment() {
 
   override fun onDetach() {
     super.onDetach()
-    mListener = null
+    listener = null
   }
 
   interface InputDetailsInteraction {
@@ -53,6 +55,8 @@ class InputDetailsFragment : Fragment() {
       firstName: String,
       lastName: String
     )
+
+    fun onBackButtonClicked()
   }
 
 }
