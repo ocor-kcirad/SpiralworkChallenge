@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_main_gradient"
-    tools:context=".SplashActivity"
+    tools:context=".view.login.LoginActivity"
     >
 
   <android.support.constraint.Guideline
@@ -27,6 +27,7 @@
       app:navigationIcon="@drawable/ic_close"
       >
     <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/loginTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
@@ -65,7 +66,7 @@
       />
 
   <android.support.v7.widget.AppCompatTextView
-      android:id="@+id/appCompatTextView7"
+      android:id="@+id/createAccountTextView"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginEnd="24dp"
@@ -88,11 +89,11 @@
       android:layout_marginBottom="8dp"
       android:layout_marginEnd="24dp"
       android:layout_marginStart="24dp"
-      android:text="This is a demo app. The login flow is heavily influcenced by AirBnb. Made with <3"
+      android:text="This is simple demo app that illustrates basic login flow. The design is heavily influcenced by AirBnb."
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/appCompatTextView7"
+      app:layout_constraintTop_toBottomOf="@+id/createAccountTextView"
       />
 
 </android.support.constraint.ConstraintLayout>
