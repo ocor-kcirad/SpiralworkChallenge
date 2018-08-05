@@ -1,4 +1,4 @@
-package com.hello.spiralworktask.view.login
+package com.hello.spiralworktask.view.login.createaccount
 
 import android.content.Context
 import android.os.Bundle
@@ -13,11 +13,13 @@ import kotlinx.android.synthetic.main.fragment_input_details.confirmFabButton
 import kotlinx.android.synthetic.main.fragment_input_details.firstNameEditText
 import kotlinx.android.synthetic.main.fragment_input_details.lastNameEditText
 import kotlinx.android.synthetic.main.fragment_input_details.toolbar
+import javax.inject.Inject
 
 class InputDetailsFragment : BaseFragment() {
 
   companion object {
-    fun newInstance(): InputDetailsFragment = InputDetailsFragment()
+    fun newInstance(): InputDetailsFragment =
+      InputDetailsFragment()
   }
 
   interface InputDetailsInteraction {
@@ -29,6 +31,7 @@ class InputDetailsFragment : BaseFragment() {
     fun onBackButtonClicked()
   }
 
+  @Inject lateinit var viewModel: CreateAccountViewModel
   private var listener: InputDetailsInteraction? = null
 
   override fun onCreateView(

@@ -1,4 +1,4 @@
-package com.hello.spiralworktask.view.login
+package com.hello.spiralworktask.view.login.createaccount
 
 import android.content.Context
 import android.os.Bundle
@@ -12,11 +12,13 @@ import com.jakewharton.rxbinding2.view.RxView
 import kotlinx.android.synthetic.main.fragment_input_email.confirmFabButton
 import kotlinx.android.synthetic.main.fragment_input_email.emailAddressEditText
 import kotlinx.android.synthetic.main.fragment_input_email.toolbar
+import javax.inject.Inject
 
 class InputEmailFragment : BaseFragment() {
 
   companion object {
-    fun newInstance(): InputEmailFragment = InputEmailFragment()
+    fun newInstance(): InputEmailFragment =
+      InputEmailFragment()
   }
 
   interface InputEmailInteraction {
@@ -24,6 +26,7 @@ class InputEmailFragment : BaseFragment() {
     fun onBackButtonClicked()
   }
 
+  @Inject lateinit var viewModel: CreateAccountViewModel
   private var listener: InputEmailInteraction? = null
 
   override fun onCreateView(

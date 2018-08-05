@@ -1,4 +1,4 @@
-package com.hello.spiralworktask.view.login
+package com.hello.spiralworktask.view.login.createaccount
 
 import android.content.Context
 import android.os.Bundle
@@ -15,13 +15,15 @@ import kotlinx.android.synthetic.main.fragment_input_password.confirmFabButton
 import kotlinx.android.synthetic.main.fragment_input_password.passwordEditText
 import kotlinx.android.synthetic.main.fragment_input_password.showPasswordTextView
 import kotlinx.android.synthetic.main.fragment_input_password.toolbar
+import javax.inject.Inject
 
 class InputPasswordFragment : BaseFragment() {
 
   companion object {
     private const val SHOW_PASSWORD = 0
     private const val HIDE_PASSWORD = 1
-    fun newInstance(): InputPasswordFragment = InputPasswordFragment()
+    fun newInstance(): InputPasswordFragment =
+      InputPasswordFragment()
   }
 
   interface InputPasswordInteraction {
@@ -29,6 +31,7 @@ class InputPasswordFragment : BaseFragment() {
     fun onBackButtonClicked()
   }
 
+  @Inject lateinit var viewModel: CreateAccountViewModel
   private var listener: InputPasswordInteraction? = null
 
   override fun onCreateView(
