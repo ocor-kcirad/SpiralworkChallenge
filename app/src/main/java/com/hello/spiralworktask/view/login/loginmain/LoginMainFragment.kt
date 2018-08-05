@@ -1,4 +1,4 @@
-package com.hello.spiralworktask.view.login
+package com.hello.spiralworktask.view.login.loginmain
 
 import android.content.Context
 import android.os.Bundle
@@ -12,11 +12,13 @@ import com.jakewharton.rxbinding2.view.RxView
 import kotlinx.android.synthetic.main.fragment_login_main.createAccountTextView
 import kotlinx.android.synthetic.main.fragment_login_main.loginTextView
 import kotlinx.android.synthetic.main.fragment_login_main.toolbar
+import javax.inject.Inject
 
 class LoginMainFragment : BaseFragment() {
 
   companion object {
-    fun newInstance(): LoginMainFragment = LoginMainFragment()
+    fun newInstance(): LoginMainFragment =
+      LoginMainFragment()
   }
 
   interface LoginMainInteraction {
@@ -25,6 +27,7 @@ class LoginMainFragment : BaseFragment() {
     fun onCloseButtonClicked()
   }
 
+  @Inject lateinit var viewModel: LoginMainViewModel
   private var listener: LoginMainInteraction? = null
 
   override fun onCreateView(
