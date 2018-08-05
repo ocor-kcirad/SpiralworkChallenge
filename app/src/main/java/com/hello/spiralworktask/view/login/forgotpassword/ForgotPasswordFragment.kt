@@ -1,4 +1,4 @@
-package com.hello.spiralworktask.view.login
+package com.hello.spiralworktask.view.login.forgotpassword
 
 import android.content.Context
 import android.os.Bundle
@@ -12,11 +12,13 @@ import com.jakewharton.rxbinding2.view.RxView
 import kotlinx.android.synthetic.main.fragment_forgot_password.confirmFabButton
 import kotlinx.android.synthetic.main.fragment_forgot_password.emailEditText
 import kotlinx.android.synthetic.main.fragment_forgot_password.toolbar
+import javax.inject.Inject
 
 class ForgotPasswordFragment : BaseFragment() {
 
   companion object {
-    fun newInstance(): ForgotPasswordFragment = ForgotPasswordFragment()
+    fun newInstance(): ForgotPasswordFragment =
+      ForgotPasswordFragment()
   }
 
   interface ForgotPasswordInteraction {
@@ -24,6 +26,7 @@ class ForgotPasswordFragment : BaseFragment() {
     fun onBackButtonClicked()
   }
 
+  @Inject lateinit var viewModel: ForgotPasswordViewModel
   private var listener: ForgotPasswordInteraction? = null
 
   override fun onCreateView(
