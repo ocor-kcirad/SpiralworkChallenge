@@ -1,4 +1,4 @@
-package com.hello.spiralworktask.view.login
+package com.hello.spiralworktask.view.login.emaillogin
 
 import android.content.Context
 import android.os.Bundle
@@ -18,19 +18,23 @@ import kotlinx.android.synthetic.main.fragment_email_login.passwordEditText
 import kotlinx.android.synthetic.main.fragment_email_login.showPasswordTextView
 import kotlinx.android.synthetic.main.fragment_email_login.toolbar
 import org.jetbrains.anko.support.v4.toast
+import javax.inject.Inject
 
 class EmailLoginFragment : BaseFragment() {
 
   companion object {
     private const val SHOW_PASSWORD = 0
     private const val HIDE_PASSWORD = 1
-    fun newInstance(): EmailLoginFragment = EmailLoginFragment()
+    fun newInstance(): EmailLoginFragment =
+      EmailLoginFragment()
   }
 
   interface EmailLoginInteraction {
     fun onForgotPasswordClicked()
     fun onBackButtonClicked()
   }
+
+  @Inject lateinit var viewModel: EmailLoginViewModel
 
   private var listener: EmailLoginInteraction? = null
 
