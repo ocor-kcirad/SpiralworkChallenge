@@ -2,19 +2,27 @@ package com.hello.spiralworktask.view.login
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.hello.spiralworktask.R
+import com.hello.spiralworktask.libs.android.BaseFragment
+import com.jakewharton.rxbinding2.support.v7.widget.RxToolbar
+import com.jakewharton.rxbinding2.view.RxView
 import kotlinx.android.synthetic.main.fragment_login_main.createAccountTextView
 import kotlinx.android.synthetic.main.fragment_login_main.loginTextView
 import kotlinx.android.synthetic.main.fragment_login_main.toolbar
 
-class LoginMainFragment : Fragment() {
+class LoginMainFragment : BaseFragment() {
 
   companion object {
     fun newInstance(): LoginMainFragment = LoginMainFragment()
+  }
+
+  interface LoginMainInteraction {
+    fun onLoginClicked()
+    fun onCreateAccountClicked()
+    fun onCloseButtonClicked()
   }
 
   private var listener: LoginMainInteraction? = null
@@ -27,9 +35,7 @@ class LoginMainFragment : Fragment() {
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
-    loginTextView.setOnClickListener { listener?.onLoginClicked() }
-    createAccountTextView.setOnClickListener { listener?.onCreateAccountClicked() }
-    toolbar.setNavigationOnClickListener { listener?.onCloseButtonClicked()}
+    subscribeToObservables()
   }
 
   override fun onAttach(context: Context?) {
@@ -46,10 +52,13 @@ class LoginMainFragment : Fragment() {
     listener = null
   }
 
-  interface LoginMainInteraction {
-    fun onLoginClicked()
-    fun onCreateAccountClicked()
-    fun onCloseButtonClicked()
+  private fun subscribeToObservables() {
+    disposableContainer.add(RxView.clicks(loginTextView)
+        .subscribe { listener?.onLoginClicked() })
+    disposableContainer.add(RxView.clicks(createAccountTextView)
+        .subscribe { listener?.onCreateAccountClicked() })
+    disposableContainer.add(RxToolbar.navigationClicks(toolbar)
+        .subscribe { listener?.onCloseButtonClicked() })
   }
 
 }

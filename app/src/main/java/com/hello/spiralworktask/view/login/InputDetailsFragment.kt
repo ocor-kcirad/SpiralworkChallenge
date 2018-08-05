@@ -2,20 +2,31 @@ package com.hello.spiralworktask.view.login
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.hello.spiralworktask.R
+import com.hello.spiralworktask.libs.android.BaseFragment
+import com.jakewharton.rxbinding2.support.v7.widget.RxToolbar
+import com.jakewharton.rxbinding2.view.RxView
 import kotlinx.android.synthetic.main.fragment_input_details.confirmFabButton
 import kotlinx.android.synthetic.main.fragment_input_details.firstNameEditText
 import kotlinx.android.synthetic.main.fragment_input_details.lastNameEditText
 import kotlinx.android.synthetic.main.fragment_input_details.toolbar
 
-class InputDetailsFragment : Fragment() {
+class InputDetailsFragment : BaseFragment() {
 
   companion object {
     fun newInstance(): InputDetailsFragment = InputDetailsFragment()
+  }
+
+  interface InputDetailsInteraction {
+    fun onSubmitDetails(
+      firstName: String,
+      lastName: String
+    )
+
+    fun onBackButtonClicked()
   }
 
   private var listener: InputDetailsInteraction? = null
@@ -28,12 +39,7 @@ class InputDetailsFragment : Fragment() {
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
-    toolbar.setNavigationOnClickListener { listener?.onBackButtonClicked() }
-    confirmFabButton.setOnClickListener {
-      listener?.onSubmitDetails(
-          firstNameEditText.text.toString(), lastNameEditText.text.toString()
-      )
-    }
+    subscribeToObservables()
   }
 
   override fun onAttach(context: Context?) {
@@ -50,13 +56,17 @@ class InputDetailsFragment : Fragment() {
     listener = null
   }
 
-  interface InputDetailsInteraction {
-    fun onSubmitDetails(
-      firstName: String,
-      lastName: String
-    )
-
-    fun onBackButtonClicked()
+  private fun subscribeToObservables() {
+    disposableContainer.add(
+        RxToolbar.navigationClicks(toolbar)
+            .subscribe { listener?.onBackButtonClicked() })
+    disposableContainer.add(
+        RxView.clicks(confirmFabButton)
+            .subscribe {
+              listener?.onSubmitDetails(
+                  firstNameEditText.text.toString(), lastNameEditText.text.toString()
+              )
+            })
   }
 
 }

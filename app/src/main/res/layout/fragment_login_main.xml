@@ -29,10 +29,12 @@
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/loginTextView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginEnd="@dimen/material_content_edge_margin_horizontal"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:background="?selectableItemBackground"
         android:fontFamily="@font/lato_bold"
+        android:gravity="center"
+        android:padding="@dimen/material_baseline_grid_2x"
         android:text="@string/label_login"
         android:textColor="@color/material_color_white"
         />
@@ -74,6 +76,7 @@
       android:layout_marginTop="64dp"
       android:background="@drawable/shape_button"
       android:fontFamily="@font/lato_bold"
+      android:foreground="?selectableItemBackground"
       android:gravity="center"
       android:text="@string/label_create_account"
       android:textColor="#FF5F6D"

@@ -2,19 +2,26 @@ package com.hello.spiralworktask.view.login
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.hello.spiralworktask.R
+import com.hello.spiralworktask.libs.android.BaseFragment
+import com.jakewharton.rxbinding2.support.v7.widget.RxToolbar
+import com.jakewharton.rxbinding2.view.RxView
 import kotlinx.android.synthetic.main.fragment_forgot_password.confirmFabButton
 import kotlinx.android.synthetic.main.fragment_forgot_password.emailEditText
 import kotlinx.android.synthetic.main.fragment_forgot_password.toolbar
 
-class ForgotPasswordFragment : Fragment() {
+class ForgotPasswordFragment : BaseFragment() {
 
   companion object {
     fun newInstance(): ForgotPasswordFragment = ForgotPasswordFragment()
+  }
+
+  interface ForgotPasswordInteraction {
+    fun onRequestPassword(email: String)
+    fun onBackButtonClicked()
   }
 
   private var listener: ForgotPasswordInteraction? = null
@@ -27,12 +34,7 @@ class ForgotPasswordFragment : Fragment() {
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
-    toolbar.setNavigationOnClickListener { listener?.onBackButtonClicked() }
-    confirmFabButton.setOnClickListener {
-      listener?.onRequestPassword(
-          emailEditText.text.toString()
-      )
-    }
+    subscribeToObservables()
   }
 
   override fun onAttach(context: Context?) {
@@ -49,9 +51,13 @@ class ForgotPasswordFragment : Fragment() {
     listener = null
   }
 
-  interface ForgotPasswordInteraction {
-    fun onRequestPassword(email: String)
-    fun onBackButtonClicked()
+  private fun subscribeToObservables() {
+    disposableContainer.add(
+        RxToolbar.navigationClicks(toolbar)
+            .subscribe { listener?.onBackButtonClicked() })
+    disposableContainer.add(
+        RxView.clicks(confirmFabButton)
+            .subscribe { listener?.onRequestPassword(emailEditText.text.toString()) })
   }
 
 }
