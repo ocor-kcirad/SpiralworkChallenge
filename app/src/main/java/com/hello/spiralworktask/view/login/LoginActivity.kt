@@ -1,19 +1,24 @@
 package com.hello.spiralworktask.view.login
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import com.hello.spiralworktask.R
+import com.hello.spiralworktask.libs.android.BaseActivity
 import com.hello.spiralworktask.libs.common.inTransaction
 import com.hello.spiralworktask.libs.common.replaceFragment
-import com.hello.spiralworktask.view.login.EmailLoginFragment.EmailLoginInteraction
-import com.hello.spiralworktask.view.login.ForgotPasswordFragment.ForgotPasswordInteraction
-import com.hello.spiralworktask.view.login.InputDetailsFragment.InputDetailsInteraction
-import com.hello.spiralworktask.view.login.InputEmailFragment.InputEmailInteraction
-import com.hello.spiralworktask.view.login.InputPasswordFragment.InputPasswordInteraction
-import com.hello.spiralworktask.view.login.LoginMainFragment.LoginMainInteraction
+import com.hello.spiralworktask.view.login.createaccount.InputDetailsFragment
+import com.hello.spiralworktask.view.login.createaccount.InputDetailsFragment.InputDetailsInteraction
+import com.hello.spiralworktask.view.login.createaccount.InputEmailFragment
+import com.hello.spiralworktask.view.login.createaccount.InputEmailFragment.InputEmailInteraction
+import com.hello.spiralworktask.view.login.createaccount.InputPasswordFragment
+import com.hello.spiralworktask.view.login.createaccount.InputPasswordFragment.InputPasswordInteraction
+import com.hello.spiralworktask.view.login.emaillogin.EmailLoginFragment
+import com.hello.spiralworktask.view.login.emaillogin.EmailLoginFragment.EmailLoginInteraction
+import com.hello.spiralworktask.view.login.forgotpassword.ForgotPasswordFragment
+import com.hello.spiralworktask.view.login.forgotpassword.ForgotPasswordFragment.ForgotPasswordInteraction
+import com.hello.spiralworktask.view.login.loginmain.LoginMainFragment
+import com.hello.spiralworktask.view.login.loginmain.LoginMainFragment.LoginMainInteraction
 
-class LoginActivity : AppCompatActivity(),
+class LoginActivity : BaseActivity(),
     LoginMainInteraction,
     EmailLoginInteraction,
     InputDetailsInteraction,
@@ -98,7 +103,6 @@ class LoginActivity : AppCompatActivity(),
   }
 
   override fun onBackButtonClicked() {
-    Log.d("Darick", "Pop")
     supportFragmentManager.popBackStack()
   }
 
