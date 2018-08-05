@@ -1,17 +1,20 @@
 package com.hello.spiralworktask.view.login.emaillogin
 
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProvider
 import android.content.Context
+import android.content.res.ColorStateList
 import android.os.Bundle
+import android.support.design.widget.Snackbar
+import android.support.v4.content.ContextCompat
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.hello.spiralworktask.R
 import com.hello.spiralworktask.libs.android.BaseFragment
+import com.hello.spiralworktask.libs.ext.snackError
+import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.Error
 import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.LoggedIn
 import com.jakewharton.rxbinding2.support.v7.widget.RxToolbar
 import com.jakewharton.rxbinding2.view.RxView
@@ -21,8 +24,10 @@ import kotlinx.android.synthetic.main.fragment_email_login.confirmProgress
 import kotlinx.android.synthetic.main.fragment_email_login.emailAddressEditText
 import kotlinx.android.synthetic.main.fragment_email_login.forgotPasswordTextView
 import kotlinx.android.synthetic.main.fragment_email_login.passwordEditText
+import kotlinx.android.synthetic.main.fragment_email_login.root
 import kotlinx.android.synthetic.main.fragment_email_login.showPasswordTextView
 import kotlinx.android.synthetic.main.fragment_email_login.toolbar
+import org.jetbrains.anko.backgroundColor
 import javax.inject.Inject
 
 class EmailLoginFragment : BaseFragment() {
@@ -52,14 +57,7 @@ class EmailLoginFragment : BaseFragment() {
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
     subscribeToObservables()
-
-    viewModel.loginState.observe(this, Observer {
-      Log.d("Darick", "State:"+ it)
-      confirmFabButton.isClickable = it?.fabEnabled == true
-      confirmProgress.visibility =
-          if (it?.progressVisibility == true) View.VISIBLE else View.INVISIBLE
-      if (it == LoggedIn) listener?.onLoginSuccess()
-    })
+    observeToViewModel()
   }
 
   override fun onAttach(context: Context) {
@@ -74,6 +72,39 @@ class EmailLoginFragment : BaseFragment() {
   override fun onDetach() {
     super.onDetach()
     listener = null
+  }
+
+  private fun observeToViewModel() {
+    viewModel.loginState.observe(this, Observer {
+
+      confirmFabButton.apply {
+
+        val fabBackgroundTint =
+          if (it?.fabEnabled == true) R.color.material_color_white_50_percent
+          else R.color.material_color_white_20_percent
+
+        val fabImage =
+          if (it?.fabEnabled == true) R.drawable.ic_next
+          else 0
+
+        isClickable = it?.fabEnabled == true
+        setImageResource(fabImage)
+        backgroundTintList = ColorStateList.valueOf(resources.getColor(fabBackgroundTint))
+      }
+
+      confirmProgress.apply {
+        visibility = if (it?.progressVisibility == true) View.VISIBLE
+        else View.INVISIBLE
+      }
+      if (it == LoggedIn) {
+        confirmFabButton.setImageResource(R.drawable.ic_check)
+        listener?.onLoginSuccess()
+      } else if (it == Error) {
+        root.snackError("Error", "Login Failed. Please try again.", Snackbar.LENGTH_SHORT) {
+          view.backgroundColor = ContextCompat.getColor(context, R.color.material_color_white)
+        }
+      }
+    })
   }
 
   private fun subscribeToObservables() {

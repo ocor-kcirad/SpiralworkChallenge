@@ -5,11 +5,13 @@ import android.arch.lifecycle.MutableLiveData
 import com.hello.spiralworktask.domain.usecase.LoginUserUseCase
 import com.hello.spiralworktask.libs.arch.BaseViewModel
 import com.hello.spiralworktask.libs.ext.isValidEmail
+import com.hello.spiralworktask.model.Credentials
 import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.Error
 import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.Invalid
 import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.LoggedIn
 import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.LoggingIn
 import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.Validated
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.processors.PublishProcessor
 import io.reactivex.rxkotlin.Flowables
 import javax.inject.Inject
@@ -60,8 +62,10 @@ class EmailLoginViewModel @Inject constructor(private val loginUserUseCase: Logi
 
   fun submitLoginDetails() {
     loginStateLiveData.value = LoggingIn
+    val credentials = Credentials(email!!.toString(), password!!.toString())
     disposableContainer.add(
-        loginUserUseCase.post(email!!, password!!)
+        loginUserUseCase.post(credentials)
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { loginStateLiveData.value = LoggedIn },
                 { loginStateLiveData.value = Error })

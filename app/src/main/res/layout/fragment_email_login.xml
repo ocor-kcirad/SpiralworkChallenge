@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_main_gradient"
@@ -136,7 +137,7 @@
   <com.dmitrymalkovich.android.ProgressFloatingActionButton
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_margin="24dp"
+      android:layout_margin="16dp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       >
@@ -145,6 +146,7 @@
         android:id="@+id/confirmFabButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:clickable="true"
         android:focusable="true"
         app:backgroundTint="@color/material_color_white_20_percent"
