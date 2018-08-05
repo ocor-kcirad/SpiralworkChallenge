@@ -1,15 +1,17 @@
 package com.hello.spiralworktask.view.login.emaillogin
 
-import android.arch.lifecycle.ViewModelProviders
-import com.hello.spiralworktask.view.login.LoginActivity
+import android.arch.lifecycle.ViewModel
+import com.hello.spiralworktask.libs.di.ViewModelKey
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
+import dagger.multibindings.IntoMap
 
 @Module
-open class EmailLoginFragmentModule {
+internal abstract class EmailLoginFragmentModule {
 
-  @Provides
-  fun provideViewModel(activity: LoginActivity): EmailLoginViewModel =
-    ViewModelProviders.of(activity).get(EmailLoginViewModel::class.java)
+  @Binds
+  @IntoMap
+  @ViewModelKey(EmailLoginViewModel::class)
+  abstract fun bindEmailLoginViewModel(viewModel: EmailLoginViewModel): ViewModel
 
 }

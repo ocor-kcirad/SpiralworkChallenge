@@ -133,20 +133,35 @@
       app:layout_constraintTop_toBottomOf="@+id/appCompatTextView3"
       />
 
-  <android.support.design.widget.FloatingActionButton
-      android:id="@+id/confirmFabButton"
+  <com.dmitrymalkovich.android.ProgressFloatingActionButton
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="24dp"
-      android:layout_marginEnd="24dp"
-      android:clickable="true"
-      android:focusable="true"
-      app:backgroundTint="@color/material_color_white_20_percent"
-      app:elevation="0dp"
+      android:layout_margin="24dp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:srcCompat="@drawable/ic_next"
-      />
+      >
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/confirmFabButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="@color/material_color_white_20_percent"
+        app:elevation="0dp"
+        app:srcCompat="@drawable/ic_next"
+        />
+
+    <ProgressBar
+        android:id="@+id/confirmProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:progressDrawable="@drawable/fab_progress_drawable"
+        />
+
+  </com.dmitrymalkovich.android.ProgressFloatingActionButton>
 
 
 </android.support.constraint.ConstraintLayout>

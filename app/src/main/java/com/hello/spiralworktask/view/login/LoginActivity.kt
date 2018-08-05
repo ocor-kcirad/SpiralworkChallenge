@@ -3,8 +3,9 @@ package com.hello.spiralworktask.view.login
 import android.os.Bundle
 import com.hello.spiralworktask.R
 import com.hello.spiralworktask.libs.android.BaseActivity
-import com.hello.spiralworktask.libs.common.inTransaction
-import com.hello.spiralworktask.libs.common.replaceFragment
+import com.hello.spiralworktask.libs.ext.inTransaction
+import com.hello.spiralworktask.libs.ext.replaceFragment
+import com.hello.spiralworktask.navigation.WelcomePageNavigator
 import com.hello.spiralworktask.view.login.createaccount.InputDetailsFragment
 import com.hello.spiralworktask.view.login.createaccount.InputDetailsFragment.InputDetailsInteraction
 import com.hello.spiralworktask.view.login.createaccount.InputEmailFragment
@@ -17,6 +18,7 @@ import com.hello.spiralworktask.view.login.forgotpassword.ForgotPasswordFragment
 import com.hello.spiralworktask.view.login.forgotpassword.ForgotPasswordFragment.ForgotPasswordInteraction
 import com.hello.spiralworktask.view.login.loginmain.LoginMainFragment
 import com.hello.spiralworktask.view.login.loginmain.LoginMainFragment.LoginMainInteraction
+import javax.inject.Inject
 
 class LoginActivity : BaseActivity(),
     LoginMainInteraction,
@@ -25,6 +27,8 @@ class LoginActivity : BaseActivity(),
     InputEmailInteraction,
     InputPasswordInteraction,
     ForgotPasswordInteraction {
+
+  @Inject lateinit var welcomePageNavigator: WelcomePageNavigator
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -96,6 +100,10 @@ class LoginActivity : BaseActivity(),
 
   override fun onRequestPassword(email: String) {
 
+  }
+
+  override fun onLoginSuccess() {
+    welcomePageNavigator.navigate(this)
   }
 
   override fun onCloseButtonClicked() {

@@ -1,5 +1,6 @@
 package com.hello.spiralworktask.view.login
 
+import android.arch.lifecycle.ViewModel
 import com.hello.spiralworktask.libs.di.scopes.PerFragment
 import com.hello.spiralworktask.view.login.createaccount.CreateAccountFragmentModule
 import com.hello.spiralworktask.view.login.createaccount.InputDetailsFragment
@@ -11,11 +12,13 @@ import com.hello.spiralworktask.view.login.forgotpassword.ForgotPasswordFragment
 import com.hello.spiralworktask.view.login.forgotpassword.ForgotPasswordFragmentModule
 import com.hello.spiralworktask.view.login.loginmain.LoginMainFragment
 import com.hello.spiralworktask.view.login.loginmain.LoginMainFragmentModule
+import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import dagger.multibindings.IntoMap
 
 @Module
-abstract class LoginFragmentsModule {
+internal abstract class LoginFragmentsModule {
 
   @PerFragment
   @ContributesAndroidInjector(modules = [(EmailLoginFragmentModule::class)])

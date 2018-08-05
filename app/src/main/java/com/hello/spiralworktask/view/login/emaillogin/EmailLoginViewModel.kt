@@ -1,5 +1,81 @@
 package com.hello.spiralworktask.view.login.emaillogin
 
-import android.arch.lifecycle.ViewModel
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
+import com.hello.spiralworktask.domain.usecase.LoginUserUseCase
+import com.hello.spiralworktask.libs.arch.BaseViewModel
+import com.hello.spiralworktask.libs.ext.isValidEmail
+import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.Error
+import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.Invalid
+import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.LoggedIn
+import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.LoggingIn
+import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.Validated
+import io.reactivex.processors.PublishProcessor
+import io.reactivex.rxkotlin.Flowables
+import javax.inject.Inject
 
-class EmailLoginViewModel : ViewModel()
+class EmailLoginViewModel @Inject constructor(private val loginUserUseCase: LoginUserUseCase) :
+    BaseViewModel() {
+
+  val loginState: LiveData<LoginState> get() = loginStateLiveData
+
+  private val loginStateLiveData = MutableLiveData<LoginState>()
+  private val emailPublisher = PublishProcessor.create<CharSequence>()
+  private val passwordPublisher = PublishProcessor.create<CharSequence>()
+
+  var email: CharSequence? = null
+    set(value) {
+      if (field == null) {
+        field = value
+      }
+      emailPublisher.onNext(email)
+    }
+
+  var password: CharSequence? = null
+    set(value) {
+      if (field == null) {
+        field = value
+      }
+      passwordPublisher.onNext(password)
+    }
+
+  init {
+    loginStateLiveData.value = Invalid
+    disposableContainer.add(Flowables
+        .combineLatest(emailPublisher, passwordPublisher, this::validateInputs)
+        .map { if (it) Validated else Invalid }
+        .distinctUntilChanged()
+        .subscribe { loginStateLiveData.postValue(it) }
+    )
+  }
+
+  private fun validateInputs(
+    email: CharSequence,
+    password: CharSequence
+  ): Boolean {
+    val isEmailAcceptable = email.isNotEmpty() && email.isValidEmail()
+    val isPasswordAcceptable = password.isNotEmpty()
+    return isEmailAcceptable && isPasswordAcceptable
+  }
+
+  fun submitLoginDetails() {
+    loginStateLiveData.value = LoggingIn
+    disposableContainer.add(
+        loginUserUseCase.post(email!!, password!!)
+            .subscribe(
+                { loginStateLiveData.value = LoggedIn },
+                { loginStateLiveData.value = Error })
+    )
+  }
+
+  sealed class LoginState(
+    val progressVisibility: Boolean,
+    val fabEnabled: Boolean
+  ) {
+    object LoggingIn : LoginState(true, false)
+    object LoggedIn : LoginState(false, false)
+    object Validated : LoginState(false, true)
+    object Invalid : LoginState(false, false)
+    object Error : LoginState(false, true)
+  }
+}

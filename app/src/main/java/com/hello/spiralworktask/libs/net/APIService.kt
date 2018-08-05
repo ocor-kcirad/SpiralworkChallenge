@@ -18,8 +18,8 @@ interface APIService {
   @Multipart
   @POST("api/login")
   fun login(
-    @Part("email") email: String,
-    @Part("password") password: String
+    @Part("email") email: CharSequence,
+    @Part("password") password: CharSequence
   ): Single<AccessToken>
 
   @Multipart

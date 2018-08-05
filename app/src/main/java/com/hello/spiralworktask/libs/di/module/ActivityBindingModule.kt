@@ -8,7 +8,7 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
-abstract class ActivityBindingModule {
+internal abstract class ActivityBindingModule {
 
   @PerActivity
   @ContributesAndroidInjector(modules = [LoginModule::class, LoginFragmentsModule::class])
