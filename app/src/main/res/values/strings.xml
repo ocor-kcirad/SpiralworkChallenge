@@ -16,4 +16,8 @@
   <string name="label_sub_header_create_password">Your password must include at\nleast one letter, one number and be 8 or more\ncharacters long.</string>
   <string name="label_welcome">Welcome.</string>
   <string name="label_create_account">Create Account</string>
+
+  <!-- TODO: Remove or change this placeholder text -->
+  <string name="hello_blank_fragment">Hello blank fragment</string>
+  <string name="user_greetings">Hi %1$s %2$s</string>
 </resources>

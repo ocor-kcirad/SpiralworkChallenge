@@ -1,5 +1,6 @@
 package com.hello.spiralworktask.view.login.forgotpassword
 
+import android.arch.lifecycle.ViewModelProvider
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -26,7 +27,7 @@ class ForgotPasswordFragment : BaseFragment() {
     fun onBackButtonClicked()
   }
 
-  @Inject lateinit var viewModel: ForgotPasswordViewModel
+  @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
   private var listener: ForgotPasswordInteraction? = null
 
   override fun onCreateView(

@@ -25,10 +25,6 @@ interface APIService {
   @GET("api/check-email")
   fun checkEmail(@Query("email") email: String): Single<AccessToken>
 
-  @FormUrlEncoded
-  @POST("api/logout")
-  fun logout(@Field("token") token: String): Completable
-
   @GET("api/me")
   fun me(@Header("Authorization") credentials: String): Single<User>
 

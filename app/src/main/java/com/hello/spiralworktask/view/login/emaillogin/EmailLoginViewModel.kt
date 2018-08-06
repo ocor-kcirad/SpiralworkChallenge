@@ -2,10 +2,11 @@ package com.hello.spiralworktask.view.login.emaillogin
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import com.hello.spiralworktask.usecase.LoginUserUseCase
+import android.util.Log
 import com.hello.spiralworktask.libs.arch.BaseViewModel
 import com.hello.spiralworktask.libs.ext.isValidEmail
 import com.hello.spiralworktask.model.Credentials
+import com.hello.spiralworktask.usecase.LoginUserUseCase
 import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.Error
 import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.Invalid
 import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.LoggingIn
@@ -38,6 +39,8 @@ class EmailLoginViewModel @Inject constructor(private val loginUserUseCase: Logi
       if (field == null) {
         field = value
       }
+
+      Log.d("Darick", "Password: "+ password)
       passwordPublisher.onNext(password)
     }
 
@@ -72,14 +75,11 @@ class EmailLoginViewModel @Inject constructor(private val loginUserUseCase: Logi
     return isEmailAcceptable && isPasswordAcceptable
   }
 
-  sealed class LoginState(
-    val progressVisibility: Boolean,
-    val fabEnabled: Boolean
-  ) {
-    object LoggingIn : LoginState(true, false)
-    object Success : LoginState(false, false)
-    object Validated : LoginState(false, true)
-    object Invalid : LoginState(false, false)
-    object Error : LoginState(false, true)
+  sealed class LoginState {
+    object LoggingIn : LoginState()
+    object Success : LoginState()
+    object Validated : LoginState()
+    object Invalid : LoginState()
+    object Error : LoginState()
   }
 }

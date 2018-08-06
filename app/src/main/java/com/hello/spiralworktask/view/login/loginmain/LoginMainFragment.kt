@@ -27,7 +27,6 @@ class LoginMainFragment : BaseFragment() {
     fun onCloseButtonClicked()
   }
 
-  @Inject lateinit var viewModel: LoginMainViewModel
   private var listener: LoginMainInteraction? = null
 
   override fun onCreateView(

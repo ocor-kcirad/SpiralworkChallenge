@@ -109,9 +109,7 @@ class InputEmailFragment : BaseFragment() {
     disposableContainer.add(RxView.clicks(confirmFabButton)
         .subscribe { listener?.onEmailSubmitted() })
     disposableContainer.add(RxTextView.afterTextChangeEvents(emailAddressEditText)
-        .map {it.editable()}
-        .doOnNext {
-          Log.d("Darick", "Val: "+ it) }
+        .map {it.view().text}
         .subscribe { viewModel?.email = it })
   }
 

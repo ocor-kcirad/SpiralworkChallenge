@@ -1,6 +1,5 @@
 package com.hello.spiralworktask.app
 
-import com.hello.spiralworktask.libs.di.component.UserComponent
 import com.hello.spiralworktask.libs.di.module.ActivityBindingModule
 import com.hello.spiralworktask.libs.di.module.NetworkModule
 import com.hello.spiralworktask.libs.di.module.ViewModelModule
@@ -20,9 +19,4 @@ import dagger.android.support.AndroidSupportInjectionModule
       (AndroidSupportInjectionModule::class)]
 )
 @PerApplication
-interface AppComponent : AndroidInjector<App> {
-
-  fun userComponentBuilder(): UserComponent.Builder
-
-
-}
+interface AppComponent : AndroidInjector<App>

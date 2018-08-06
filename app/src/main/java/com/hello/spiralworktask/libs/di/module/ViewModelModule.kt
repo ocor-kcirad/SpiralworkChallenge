@@ -6,13 +6,16 @@ import com.hello.spiralworktask.libs.di.ViewModelFactory
 import com.hello.spiralworktask.libs.di.ViewModelKey
 import com.hello.spiralworktask.view.login.LoginViewModel
 import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel
+import com.hello.spiralworktask.view.login.forgotpassword.ForgotPasswordViewModel
 import com.hello.spiralworktask.view.register.RegisterAccountViewModel
+import com.hello.spiralworktask.view.welcome.WelcomeUserViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 
 @Module
 abstract class ViewModelModule {
+
   @Binds
   internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 
@@ -30,4 +33,14 @@ abstract class ViewModelModule {
   @IntoMap
   @ViewModelKey(LoginViewModel::class)
   abstract fun bindLoginViewModel(viewModel: LoginViewModel): ViewModel
+
+  @Binds
+  @IntoMap
+  @ViewModelKey(WelcomeUserViewModel::class)
+  abstract fun bindWelcomeUserViewModel(viewModel: WelcomeUserViewModel): ViewModel
+
+  @Binds
+  @IntoMap
+  @ViewModelKey(ForgotPasswordViewModel::class)
+  abstract fun bindForgotPasswordViewModel(viewModel: ForgotPasswordViewModel): ViewModel
 }

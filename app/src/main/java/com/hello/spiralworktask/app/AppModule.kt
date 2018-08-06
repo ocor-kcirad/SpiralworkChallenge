@@ -4,7 +4,6 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.hello.spiralworktask.libs.di.component.UserComponent
 import com.hello.spiralworktask.libs.di.scopes.PerApplication
 import com.hello.spiralworktask.libs.session.UserManager
 import dagger.Module
@@ -21,9 +20,8 @@ class AppModule(private val app: App) {
   @Provides
   fun provideUserManager(
     gson: Gson,
-    sharedPreferences: SharedPreferences,
-    userComponentBuilder: UserComponent.Builder
-  ) = UserManager(gson, sharedPreferences, userComponentBuilder)
+    sharedPreferences: SharedPreferences
+  ) = UserManager(gson, sharedPreferences)
 
   @PerApplication
   @Provides

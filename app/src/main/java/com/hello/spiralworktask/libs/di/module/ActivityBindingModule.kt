@@ -2,12 +2,10 @@ package com.hello.spiralworktask.libs.di.module
 
 import com.hello.spiralworktask.libs.di.scopes.PerActivity
 import com.hello.spiralworktask.view.login.LoginActivity
-import com.hello.spiralworktask.view.login.LoginFragmentsModule
 import com.hello.spiralworktask.view.login.LoginModule
 import com.hello.spiralworktask.view.register.RegisterActivity
 import com.hello.spiralworktask.view.register.RegisterActivityModule
 import com.hello.spiralworktask.view.welcome.WelcomeUserActivity
-import com.hello.spiralworktask.view.welcome.WelcomeUserModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -15,7 +13,7 @@ import dagger.android.ContributesAndroidInjector
 internal abstract class ActivityBindingModule {
 
   @PerActivity
-  @ContributesAndroidInjector(modules = [LoginModule::class, LoginFragmentsModule::class])
+  @ContributesAndroidInjector(modules = [LoginModule::class])
   abstract fun bindLoginActivity(): LoginActivity
 
   @PerActivity
@@ -23,7 +21,7 @@ internal abstract class ActivityBindingModule {
   abstract fun bindRegisterActivity(): RegisterActivity
 
   @PerActivity
-  @ContributesAndroidInjector(modules = [WelcomeUserModule::class])
+  @ContributesAndroidInjector()
   abstract fun bindWelcomeUserActivity(): WelcomeUserActivity
 
 }

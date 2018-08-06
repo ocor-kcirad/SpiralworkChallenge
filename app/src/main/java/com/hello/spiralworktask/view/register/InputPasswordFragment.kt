@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -139,7 +140,7 @@ class InputPasswordFragment : BaseFragment() {
         .doOnNext { togglePasswordVisibility() }
         .subscribe { showPasswordTextView.showNext() })
     disposableContainer.add(RxTextView.afterTextChangeEvents(passwordEditText)
-        .map {it.editable()}
+        .map { it.view().text}
         .subscribe { viewModel?.password = it })
     disposableContainer.add(RxView.clicks(confirmFabButton)
         .subscribe { viewModel?.createAccount() })

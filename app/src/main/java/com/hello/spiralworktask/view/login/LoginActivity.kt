@@ -56,8 +56,8 @@ class LoginActivity : BaseActivity(),
   override fun onLoginClicked() {
     supportFragmentManager.inTransaction {
       setCustomAnimations(
-          R.anim.enter_from_left, R.anim.exit_to_left,
-          R.anim.enter_from_right, R.anim.exit_to_right
+          R.anim.enter_from_right, R.anim.exit_to_left,
+          R.anim.enter_from_left, R.anim.exit_to_right
       )
       replace(R.id.fragmentContainer, EmailLoginFragment.newInstance())
       addToBackStack(null)
@@ -71,8 +71,8 @@ class LoginActivity : BaseActivity(),
   override fun onForgotPasswordClicked() {
     supportFragmentManager.inTransaction {
       setCustomAnimations(
-          R.anim.enter_from_left, R.anim.exit_to_left,
-          R.anim.enter_from_right, R.anim.exit_to_right
+          R.anim.enter_from_right, R.anim.exit_to_left,
+          R.anim.enter_from_left, R.anim.exit_to_right
       )
       replace(R.id.fragmentContainer, ForgotPasswordFragment.newInstance())
       addToBackStack(null)

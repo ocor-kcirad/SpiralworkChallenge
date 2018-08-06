@@ -8,14 +8,14 @@ import dagger.android.ContributesAndroidInjector
 internal abstract class RegisterActivityModule {
 
   @PerFragment
-  @ContributesAndroidInjector(modules = [(CreateAccountFragmentModule::class)])
+  @ContributesAndroidInjector()
   abstract fun bindInputDetailsFragment(): InputDetailsFragment
 
   @PerFragment
-  @ContributesAndroidInjector(modules = [(CreateAccountFragmentModule::class)])
+  @ContributesAndroidInjector()
   abstract fun bindInputEmailFragment(): InputEmailFragment
 
   @PerFragment
-  @ContributesAndroidInjector(modules = [(CreateAccountFragmentModule::class)])
+  @ContributesAndroidInjector()
   abstract fun bindInputPasswordFragment(): InputPasswordFragment
 }

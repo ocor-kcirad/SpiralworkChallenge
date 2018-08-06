@@ -2,15 +2,14 @@ package com.hello.spiralworktask.view.register
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import android.util.Log
-import com.hello.spiralworktask.usecase.CheckEmailAvailabilityUseCase
-import com.hello.spiralworktask.usecase.CreateUserUseCase
 import com.hello.spiralworktask.libs.arch.BaseViewModel
 import com.hello.spiralworktask.libs.arch.Resource
 import com.hello.spiralworktask.libs.ext.isValidEmail
 import com.hello.spiralworktask.libs.ext.isValidPassword
 import com.hello.spiralworktask.model.AccessToken
 import com.hello.spiralworktask.model.SignupDetails
+import com.hello.spiralworktask.usecase.CheckEmailAvailabilityUseCase
+import com.hello.spiralworktask.usecase.CreateUserUseCase
 import com.hello.spiralworktask.view.register.RegisterAccountViewModel.EmailInputState.EmailAccepted
 import com.hello.spiralworktask.view.register.RegisterAccountViewModel.EmailInputState.ErrorEmailVerification
 import com.hello.spiralworktask.view.register.RegisterAccountViewModel.EmailInputState.InvalidEmail
@@ -22,6 +21,7 @@ import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.processors.PublishProcessor
 import io.reactivex.rxkotlin.Flowables
+import java.io.IOException
 import javax.inject.Inject
 
 class RegisterAccountViewModel @Inject constructor(
@@ -89,8 +89,11 @@ class RegisterAccountViewModel @Inject constructor(
               .post(it.toString())
               .map<EmailInputState> { EmailAccepted }
               .onErrorReturn {
-                Log.d("Darick", "Error Type" + it)
-                ErrorEmailVerification("Email is already taken")
+                if (it is IOException)
+                  ErrorEmailVerification("Cannot connect to server")
+                else
+                  ErrorEmailVerification("Email is already taken")
+
               }
         }
 
@@ -119,7 +122,6 @@ class RegisterAccountViewModel @Inject constructor(
 
   fun createAccount() {
     accountCreationLiveData.value = Resource.loading()
-
     val signupDetails = SignupDetails(
         email.toString(),
         password.toString(),
