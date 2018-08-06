@@ -34,3 +34,6 @@ task startServer(type: NodeTask) {
     script = file('index.js')
 }
 
+node {
+    download = true
+}
