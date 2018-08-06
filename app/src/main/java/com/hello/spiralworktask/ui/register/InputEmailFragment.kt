@@ -6,7 +6,6 @@ import android.content.res.ColorStateList
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -94,6 +93,13 @@ class InputEmailFragment : BaseFragment() {
             }
           }
           is ErrorEmailVerification -> {
+            confirmFabButton.apply {
+              isClickable = false
+              setImageResource(0)
+              backgroundTintList = ColorStateList.valueOf(
+                  resources.getColor(R.color.material_color_white_20_percent)
+              )
+            }
             root.snackError("Error", it.error, Snackbar.LENGTH_SHORT) {
               view.backgroundColor = ContextCompat.getColor(context, R.color.material_color_white)
             }
@@ -109,7 +115,10 @@ class InputEmailFragment : BaseFragment() {
     disposableContainer.add(RxView.clicks(confirmFabButton)
         .subscribe { listener?.onEmailSubmitted() })
     disposableContainer.add(RxTextView.afterTextChangeEvents(emailAddressEditText)
-        .map {it.view().text}
+        .map {
+          it.view()
+              .text
+        }
         .subscribe { viewModel?.email = it })
   }
 
