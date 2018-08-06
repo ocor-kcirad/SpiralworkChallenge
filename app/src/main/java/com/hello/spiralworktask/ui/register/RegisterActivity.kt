@@ -47,7 +47,7 @@ class RegisterActivity : BaseActivity(),
   }
 
   override fun onAccountCreated() {
-    welcomePageNavigator.navigate(this)
+    welcomePageNavigator.navigate(this, true)
   }
 
   override fun onBackButtonClicked() {
@@ -56,6 +56,6 @@ class RegisterActivity : BaseActivity(),
 
   override fun onCloseButtonClicked() {
     finish()
-    overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_right)
+    overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right)
   }
 }

@@ -7,19 +7,29 @@ import com.hello.spiralworktask.ui.register.RegisterActivity
 import com.hello.spiralworktask.ui.welcome.WelcomeUserActivity
 import org.jetbrains.anko.clearTask
 import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.newTask
 import javax.inject.Inject
 
 class WelcomePageNavigator @Inject constructor() {
 
-  fun navigate(activity: Activity) {
-    val intent = activity.intentFor<WelcomeUserActivity>().clearTask()
+  fun navigate(
+    activity: Activity,
+    clearTask: Boolean = false
+  ) {
+    val intent = activity
+        .intentFor<WelcomeUserActivity>()
+
+    if (clearTask) {
+      intent.clearTask()
+          .newTask()
+    }
+
     activity.startActivity(intent)
     activity.finish()
     activity.overridePendingTransition(R.anim.slide_in_top, 0)
   }
 
 }
-
 
 class LoginPageNavigator @Inject constructor() {
 
