@@ -1,4 +1,4 @@
-package com.hello.spiralworktask.view.register
+package com.hello.spiralworktask.ui.register
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
@@ -10,13 +10,13 @@ import com.hello.spiralworktask.model.AccessToken
 import com.hello.spiralworktask.model.SignupDetails
 import com.hello.spiralworktask.usecase.CheckEmailAvailabilityUseCase
 import com.hello.spiralworktask.usecase.CreateUserUseCase
-import com.hello.spiralworktask.view.register.RegisterAccountViewModel.EmailInputState.EmailAccepted
-import com.hello.spiralworktask.view.register.RegisterAccountViewModel.EmailInputState.ErrorEmailVerification
-import com.hello.spiralworktask.view.register.RegisterAccountViewModel.EmailInputState.InvalidEmail
-import com.hello.spiralworktask.view.register.RegisterAccountViewModel.PasswordInputState.InvalidPassword
-import com.hello.spiralworktask.view.register.RegisterAccountViewModel.PasswordInputState.PasswordAccepted
-import com.hello.spiralworktask.view.register.RegisterAccountViewModel.UserInputState.InvalidUserDetail
-import com.hello.spiralworktask.view.register.RegisterAccountViewModel.UserInputState.UserDetailAccepted
+import com.hello.spiralworktask.ui.register.RegisterAccountViewModel.EmailInputState.EmailAccepted
+import com.hello.spiralworktask.ui.register.RegisterAccountViewModel.EmailInputState.ErrorEmailVerification
+import com.hello.spiralworktask.ui.register.RegisterAccountViewModel.EmailInputState.InvalidEmail
+import com.hello.spiralworktask.ui.register.RegisterAccountViewModel.PasswordInputState.InvalidPassword
+import com.hello.spiralworktask.ui.register.RegisterAccountViewModel.PasswordInputState.PasswordAccepted
+import com.hello.spiralworktask.ui.register.RegisterAccountViewModel.UserInputState.InvalidUserDetail
+import com.hello.spiralworktask.ui.register.RegisterAccountViewModel.UserInputState.UserDetailAccepted
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.processors.PublishProcessor

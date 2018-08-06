@@ -1,4 +1,4 @@
-package com.hello.spiralworktask.view.login
+package com.hello.spiralworktask.ui.login
 
 import android.arch.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -11,14 +11,14 @@ import com.hello.spiralworktask.libs.ext.replaceFragment
 import com.hello.spiralworktask.libs.ext.withViewModel
 import com.hello.spiralworktask.navigation.RegisterPageNavigator
 import com.hello.spiralworktask.navigation.WelcomePageNavigator
-import com.hello.spiralworktask.view.login.LoginViewModel.SessionState.Resumed
-import com.hello.spiralworktask.view.login.LoginViewModel.SessionState.Started
-import com.hello.spiralworktask.view.login.emaillogin.EmailLoginFragment
-import com.hello.spiralworktask.view.login.emaillogin.EmailLoginFragment.EmailLoginInteraction
-import com.hello.spiralworktask.view.login.forgotpassword.ForgotPasswordFragment
-import com.hello.spiralworktask.view.login.forgotpassword.ForgotPasswordFragment.ForgotPasswordInteraction
-import com.hello.spiralworktask.view.login.loginmain.LoginMainFragment
-import com.hello.spiralworktask.view.login.loginmain.LoginMainFragment.LoginMainInteraction
+import com.hello.spiralworktask.ui.login.LoginViewModel.SessionState.Resumed
+import com.hello.spiralworktask.ui.login.LoginViewModel.SessionState.Started
+import com.hello.spiralworktask.ui.login.emaillogin.EmailLoginFragment
+import com.hello.spiralworktask.ui.login.emaillogin.EmailLoginFragment.EmailLoginInteraction
+import com.hello.spiralworktask.ui.login.forgotpassword.ForgotPasswordFragment
+import com.hello.spiralworktask.ui.login.forgotpassword.ForgotPasswordFragment.ForgotPasswordInteraction
+import com.hello.spiralworktask.ui.login.loginmain.LoginMainFragment
+import com.hello.spiralworktask.ui.login.loginmain.LoginMainFragment.LoginMainInteraction
 import javax.inject.Inject
 
 class LoginActivity : BaseActivity(),

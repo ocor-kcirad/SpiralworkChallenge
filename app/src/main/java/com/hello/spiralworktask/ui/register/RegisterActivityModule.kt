@@ -1,4 +1,4 @@
-package com.hello.spiralworktask.view.register
+package com.hello.spiralworktask.ui.register
 
 import com.hello.spiralworktask.libs.di.scopes.PerFragment
 import dagger.Module

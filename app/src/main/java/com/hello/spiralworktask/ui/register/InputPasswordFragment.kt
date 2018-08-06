@@ -1,4 +1,4 @@
-package com.hello.spiralworktask.view.register
+package com.hello.spiralworktask.ui.register
 
 import android.arch.lifecycle.ViewModelProvider
 import android.content.Context
@@ -21,8 +21,8 @@ import com.hello.spiralworktask.libs.ext.getViewModel
 import com.hello.spiralworktask.libs.ext.observe
 import com.hello.spiralworktask.libs.ext.snackError
 import com.hello.spiralworktask.libs.ext.withViewModel
-import com.hello.spiralworktask.view.register.RegisterAccountViewModel.PasswordInputState.InvalidPassword
-import com.hello.spiralworktask.view.register.RegisterAccountViewModel.PasswordInputState.PasswordAccepted
+import com.hello.spiralworktask.ui.register.RegisterAccountViewModel.PasswordInputState.InvalidPassword
+import com.hello.spiralworktask.ui.register.RegisterAccountViewModel.PasswordInputState.PasswordAccepted
 import com.jakewharton.rxbinding2.support.v7.widget.RxToolbar
 import com.jakewharton.rxbinding2.view.RxView
 import com.jakewharton.rxbinding2.widget.RxTextView

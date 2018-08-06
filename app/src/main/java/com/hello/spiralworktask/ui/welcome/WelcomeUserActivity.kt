@@ -1,4 +1,4 @@
-package com.hello.spiralworktask.view.welcome
+package com.hello.spiralworktask.ui.welcome
 
 import android.arch.lifecycle.ViewModelProvider
 import android.os.Bundle

@@ -1,11 +1,11 @@
 package com.hello.spiralworktask.libs.di.module
 
 import com.hello.spiralworktask.libs.di.scopes.PerActivity
-import com.hello.spiralworktask.view.login.LoginActivity
-import com.hello.spiralworktask.view.login.LoginModule
-import com.hello.spiralworktask.view.register.RegisterActivity
-import com.hello.spiralworktask.view.register.RegisterActivityModule
-import com.hello.spiralworktask.view.welcome.WelcomeUserActivity
+import com.hello.spiralworktask.ui.login.LoginActivity
+import com.hello.spiralworktask.ui.login.LoginModule
+import com.hello.spiralworktask.ui.register.RegisterActivity
+import com.hello.spiralworktask.ui.register.RegisterActivityModule
+import com.hello.spiralworktask.ui.welcome.WelcomeUserActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

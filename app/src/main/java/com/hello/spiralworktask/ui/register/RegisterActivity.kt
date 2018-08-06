@@ -1,4 +1,4 @@
-package com.hello.spiralworktask.view.register
+package com.hello.spiralworktask.ui.register
 
 import android.os.Bundle
 import com.hello.spiralworktask.R
@@ -6,9 +6,9 @@ import com.hello.spiralworktask.libs.android.BaseActivity
 import com.hello.spiralworktask.libs.ext.inTransaction
 import com.hello.spiralworktask.libs.ext.replaceFragment
 import com.hello.spiralworktask.navigation.WelcomePageNavigator
-import com.hello.spiralworktask.view.register.InputDetailsFragment.InputDetailsInteraction
-import com.hello.spiralworktask.view.register.InputEmailFragment.InputEmailInteraction
-import com.hello.spiralworktask.view.register.InputPasswordFragment.InputPasswordInteraction
+import com.hello.spiralworktask.ui.register.InputDetailsFragment.InputDetailsInteraction
+import com.hello.spiralworktask.ui.register.InputEmailFragment.InputEmailInteraction
+import com.hello.spiralworktask.ui.register.InputPasswordFragment.InputPasswordInteraction
 import javax.inject.Inject
 
 class RegisterActivity : BaseActivity(),

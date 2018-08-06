@@ -4,11 +4,11 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.hello.spiralworktask.libs.di.ViewModelFactory
 import com.hello.spiralworktask.libs.di.ViewModelKey
-import com.hello.spiralworktask.view.login.LoginViewModel
-import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel
-import com.hello.spiralworktask.view.login.forgotpassword.ForgotPasswordViewModel
-import com.hello.spiralworktask.view.register.RegisterAccountViewModel
-import com.hello.spiralworktask.view.welcome.WelcomeUserViewModel
+import com.hello.spiralworktask.ui.login.LoginViewModel
+import com.hello.spiralworktask.ui.login.emaillogin.EmailLoginViewModel
+import com.hello.spiralworktask.ui.login.forgotpassword.ForgotPasswordViewModel
+import com.hello.spiralworktask.ui.register.RegisterAccountViewModel
+import com.hello.spiralworktask.ui.welcome.WelcomeUserViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

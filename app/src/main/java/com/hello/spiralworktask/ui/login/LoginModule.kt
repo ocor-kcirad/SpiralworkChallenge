@@ -1,9 +1,9 @@
-package com.hello.spiralworktask.view.login
+package com.hello.spiralworktask.ui.login
 
 import com.hello.spiralworktask.libs.di.scopes.PerFragment
-import com.hello.spiralworktask.view.login.emaillogin.EmailLoginFragment
-import com.hello.spiralworktask.view.login.forgotpassword.ForgotPasswordFragment
-import com.hello.spiralworktask.view.login.loginmain.LoginMainFragment
+import com.hello.spiralworktask.ui.login.emaillogin.EmailLoginFragment
+import com.hello.spiralworktask.ui.login.forgotpassword.ForgotPasswordFragment
+import com.hello.spiralworktask.ui.login.loginmain.LoginMainFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

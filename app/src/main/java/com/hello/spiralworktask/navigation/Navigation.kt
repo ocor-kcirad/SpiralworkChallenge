@@ -2,9 +2,9 @@ package com.hello.spiralworktask.navigation
 
 import android.app.Activity
 import com.hello.spiralworktask.R
-import com.hello.spiralworktask.view.login.LoginActivity
-import com.hello.spiralworktask.view.register.RegisterActivity
-import com.hello.spiralworktask.view.welcome.WelcomeUserActivity
+import com.hello.spiralworktask.ui.login.LoginActivity
+import com.hello.spiralworktask.ui.register.RegisterActivity
+import com.hello.spiralworktask.ui.welcome.WelcomeUserActivity
 import org.jetbrains.anko.clearTask
 import org.jetbrains.anko.intentFor
 import javax.inject.Inject
