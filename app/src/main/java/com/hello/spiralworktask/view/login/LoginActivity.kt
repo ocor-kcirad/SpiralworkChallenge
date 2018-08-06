@@ -5,13 +5,8 @@ import com.hello.spiralworktask.R
 import com.hello.spiralworktask.libs.android.BaseActivity
 import com.hello.spiralworktask.libs.ext.inTransaction
 import com.hello.spiralworktask.libs.ext.replaceFragment
+import com.hello.spiralworktask.navigation.RegisterPageNavigator
 import com.hello.spiralworktask.navigation.WelcomePageNavigator
-import com.hello.spiralworktask.view.login.createaccount.InputDetailsFragment
-import com.hello.spiralworktask.view.login.createaccount.InputDetailsFragment.InputDetailsInteraction
-import com.hello.spiralworktask.view.login.createaccount.InputEmailFragment
-import com.hello.spiralworktask.view.login.createaccount.InputEmailFragment.InputEmailInteraction
-import com.hello.spiralworktask.view.login.createaccount.InputPasswordFragment
-import com.hello.spiralworktask.view.login.createaccount.InputPasswordFragment.InputPasswordInteraction
 import com.hello.spiralworktask.view.login.emaillogin.EmailLoginFragment
 import com.hello.spiralworktask.view.login.emaillogin.EmailLoginFragment.EmailLoginInteraction
 import com.hello.spiralworktask.view.login.forgotpassword.ForgotPasswordFragment
@@ -23,12 +18,10 @@ import javax.inject.Inject
 class LoginActivity : BaseActivity(),
     LoginMainInteraction,
     EmailLoginInteraction,
-    InputDetailsInteraction,
-    InputEmailInteraction,
-    InputPasswordInteraction,
     ForgotPasswordInteraction {
 
   @Inject lateinit var welcomePageNavigator: WelcomePageNavigator
+  @Inject lateinit var registerPageNavigator: RegisterPageNavigator
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -48,14 +41,7 @@ class LoginActivity : BaseActivity(),
   }
 
   override fun onCreateAccountClicked() {
-    supportFragmentManager.inTransaction {
-      setCustomAnimations(
-          R.anim.enter_from_left, R.anim.exit_to_left,
-          R.anim.enter_from_right, R.anim.exit_to_right
-      )
-      replace(R.id.fragmentContainer, InputDetailsFragment.newInstance())
-      addToBackStack(null)
-    }
+    registerPageNavigator.navigate(this)
   }
 
   override fun onForgotPasswordClicked() {
@@ -67,35 +53,6 @@ class LoginActivity : BaseActivity(),
       replace(R.id.fragmentContainer, ForgotPasswordFragment.newInstance())
       addToBackStack(null)
     }
-  }
-
-  override fun onSubmitDetails(
-    firstName: String,
-    lastName: String
-  ) {
-    supportFragmentManager.inTransaction {
-      setCustomAnimations(
-          R.anim.enter_from_left, R.anim.exit_to_left,
-          R.anim.enter_from_right, R.anim.exit_to_right
-      )
-      replace(R.id.fragmentContainer, InputEmailFragment.newInstance())
-      addToBackStack(null)
-    }
-  }
-
-  override fun onSubmitEmail(email: String) {
-    supportFragmentManager.inTransaction {
-      setCustomAnimations(
-          R.anim.enter_from_left, R.anim.exit_to_left,
-          R.anim.enter_from_right, R.anim.exit_to_right
-      )
-      replace(R.id.fragmentContainer, InputPasswordFragment.newInstance())
-      addToBackStack(null)
-    }
-  }
-
-  override fun onSubmitPassword(password: String) {
-
   }
 
   override fun onRequestPassword(email: String) {

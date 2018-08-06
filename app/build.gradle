@@ -27,6 +27,7 @@ dependencies {
   def arch_version = "1.1.1"
   def retrofit_version = "2.4.0"
   def rxjava_version = "2.2.0"
+  def rxkotlin_version = "2.2.0"
   def rxandroid_version = "2.0.2"
   def support_version = "27.1.1"
   def constraint_layout_version = "1.1.2"
@@ -43,6 +44,8 @@ dependencies {
   //RxJava
   implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
   implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+  //RxKotlin
+  implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
   //RxBinding
   implementation "com.jakewharton.rxbinding2:rxbinding-kotlin:$rxbinding_version"
   implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:$rxbinding_version"
@@ -50,8 +53,10 @@ dependencies {
   implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
   implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
   implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+  implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
   //Arch Components
   implementation "android.arch.lifecycle:extensions:$arch_version"
+  implementation "android.arch.lifecycle:reactivestreams:$arch_version"
   kapt "android.arch.lifecycle:compiler:$arch_version"
   //Anko
   implementation "org.jetbrains.anko:anko:$anko_version"
@@ -62,6 +67,7 @@ dependencies {
   kapt "com.google.dagger:dagger-android-processor:$dagger_version"
   //Others
   implementation 'blue.aodev:material-values:1.1.1'
+  implementation 'com.dmitrymalkovich.android:progress-fab:1.6'
   //Test
   testImplementation 'junit:junit:4.12'
   androidTestImplementation 'com.android.support.test:runner:1.0.2'

@@ -1,6 +1,6 @@
 package com.hello.spiralworktask.view.login.emaillogin
 
-import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
 import android.content.Context
 import android.content.res.ColorStateList
 import android.os.Bundle
@@ -13,7 +13,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.hello.spiralworktask.R
 import com.hello.spiralworktask.libs.android.BaseFragment
+import com.hello.spiralworktask.libs.ext.getViewModel
+import com.hello.spiralworktask.libs.ext.observe
 import com.hello.spiralworktask.libs.ext.snackError
+import com.hello.spiralworktask.libs.ext.withViewModel
 import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.Error
 import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.LoggedIn
 import com.jakewharton.rxbinding2.support.v7.widget.RxToolbar
@@ -45,8 +48,9 @@ class EmailLoginFragment : BaseFragment() {
     fun onBackButtonClicked()
   }
 
-  @Inject lateinit var viewModel: EmailLoginViewModel
+  @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
   private var listener: EmailLoginInteraction? = null
+  private var viewModel: EmailLoginViewModel? = null
 
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -56,6 +60,9 @@ class EmailLoginFragment : BaseFragment() {
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
+
+    viewModel = getViewModel(viewModelFactory)
+
     subscribeToObservables()
     observeToViewModel()
   }
@@ -75,36 +82,38 @@ class EmailLoginFragment : BaseFragment() {
   }
 
   private fun observeToViewModel() {
-    viewModel.loginState.observe(this, Observer {
+    withViewModel<EmailLoginViewModel>(viewModelFactory) {
+      observe(loginState) {
+        confirmFabButton.apply {
 
-      confirmFabButton.apply {
+          val fabBackgroundTint =
+            if (it?.fabEnabled == true) R.color.material_color_white_50_percent
+            else R.color.material_color_white_20_percent
 
-        val fabBackgroundTint =
-          if (it?.fabEnabled == true) R.color.material_color_white_50_percent
-          else R.color.material_color_white_20_percent
+          val fabImage =
+            if (it?.fabEnabled == true) R.drawable.ic_next
+            else 0
 
-        val fabImage =
-          if (it?.fabEnabled == true) R.drawable.ic_next
-          else 0
+          isClickable = it?.fabEnabled == true
+          setImageResource(fabImage)
+          backgroundTintList = ColorStateList.valueOf(resources.getColor(fabBackgroundTint))
+        }
 
-        isClickable = it?.fabEnabled == true
-        setImageResource(fabImage)
-        backgroundTintList = ColorStateList.valueOf(resources.getColor(fabBackgroundTint))
-      }
+        confirmProgress.apply {
+          visibility = if (it?.progressVisibility == true) View.VISIBLE
+          else View.INVISIBLE
+        }
 
-      confirmProgress.apply {
-        visibility = if (it?.progressVisibility == true) View.VISIBLE
-        else View.INVISIBLE
-      }
-      if (it == LoggedIn) {
-        confirmFabButton.setImageResource(R.drawable.ic_check)
-        listener?.onLoginSuccess()
-      } else if (it == Error) {
-        root.snackError("Error", "Login Failed. Please try again.", Snackbar.LENGTH_SHORT) {
-          view.backgroundColor = ContextCompat.getColor(context, R.color.material_color_white)
+        if (it == LoggedIn) {
+          confirmFabButton.setImageResource(R.drawable.ic_check)
+          listener?.onLoginSuccess()
+        } else if (it == Error) {
+          root.snackError("Error", "Login Failed. Please try again.", Snackbar.LENGTH_SHORT) {
+            view.backgroundColor = ContextCompat.getColor(context, R.color.material_color_white)
+          }
         }
       }
-    })
+    }
   }
 
   private fun subscribeToObservables() {
@@ -120,13 +129,13 @@ class EmailLoginFragment : BaseFragment() {
             .subscribe { listener?.onBackButtonClicked() })
     disposableContainer.add(
         RxTextView.textChanges(emailAddressEditText)
-            .subscribe { viewModel.email = it })
+            .subscribe { viewModel?.email = it })
     disposableContainer.add(
         RxTextView.textChanges(passwordEditText)
-            .subscribe { viewModel.password = it })
+            .subscribe { viewModel?.password = it })
     disposableContainer.add(
         RxView.clicks(confirmFabButton)
-            .subscribe { viewModel.submitLoginDetails() })
+            .subscribe { viewModel?.submitLoginDetails() })
 
   }
 

@@ -12,6 +12,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import javax.inject.Named
 
 @Module
@@ -19,7 +20,7 @@ class NetworkModule {
 
   @Provides
   @Named("endpoint")
-  fun provideEndpoint() = "http://localhost:3000/"
+  fun provideEndpoint() = "http://192.168.1.176:3000/"
 
   @PerApplication
   @Provides
@@ -34,6 +35,7 @@ class NetworkModule {
     Retrofit.Builder()
         .callFactory(callFactory)
         .baseUrl(endpoint)
+        .addConverterFactory(ScalarsConverterFactory.create())
         .addConverterFactory(GsonConverterFactory.create(gson))
         .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
         .build()

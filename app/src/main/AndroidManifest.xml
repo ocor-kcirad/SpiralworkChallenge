@@ -15,6 +15,7 @@
       android:theme="@style/AppTheme">
     <activity
         android:name=".view.login.LoginActivity"
+        android:screenOrientation="portrait"
         android:windowSoftInputMode="adjustResize">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
@@ -22,8 +23,13 @@
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
-    <activity android:name=".view.welcome.WelcomeActivity">
-    </activity>
+    <activity
+        android:name=".view.register.RegisterActivity"
+        android:screenOrientation="portrait"
+        android:windowSoftInputMode="adjustResize"/>
+    <activity
+        android:name=".view.welcome.WelcomeActivity"
+        android:screenOrientation="portrait"/>
   </application>
 
 </manifest>
