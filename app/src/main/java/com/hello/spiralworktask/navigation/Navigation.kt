@@ -4,14 +4,14 @@ import android.app.Activity
 import com.hello.spiralworktask.R
 import com.hello.spiralworktask.view.login.LoginActivity
 import com.hello.spiralworktask.view.register.RegisterActivity
-import com.hello.spiralworktask.view.welcome.WelcomeActivity
+import com.hello.spiralworktask.view.welcome.WelcomeUserActivity
 import org.jetbrains.anko.intentFor
 import javax.inject.Inject
 
 class WelcomePageNavigator @Inject constructor() {
 
   fun navigate(activity: Activity) {
-    activity.startActivity(activity.intentFor<WelcomeActivity>())
+    activity.startActivity(activity.intentFor<WelcomeUserActivity>())
     activity.finish()
     activity.overridePendingTransition(R.anim.slide_in_top, 0)
   }

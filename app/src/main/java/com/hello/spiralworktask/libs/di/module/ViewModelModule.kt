@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.hello.spiralworktask.libs.di.ViewModelFactory
 import com.hello.spiralworktask.libs.di.ViewModelKey
+import com.hello.spiralworktask.view.login.LoginViewModel
 import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel
 import com.hello.spiralworktask.view.register.RegisterAccountViewModel
 import dagger.Binds
@@ -24,4 +25,9 @@ abstract class ViewModelModule {
   @IntoMap
   @ViewModelKey(RegisterAccountViewModel::class)
   abstract fun bindRegisterAccountViewModel(viewModel: RegisterAccountViewModel): ViewModel
+
+  @Binds
+  @IntoMap
+  @ViewModelKey(LoginViewModel::class)
+  abstract fun bindLoginViewModel(viewModel: LoginViewModel): ViewModel
 }

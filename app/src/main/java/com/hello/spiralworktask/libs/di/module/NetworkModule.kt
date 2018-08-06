@@ -13,14 +13,9 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
-import javax.inject.Named
 
 @Module
-class NetworkModule {
-
-  @Provides
-  @Named("endpoint")
-  fun provideEndpoint() = "http://192.168.1.176:3000/"
+class NetworkModule(private val endpoint: String) {
 
   @PerApplication
   @Provides
@@ -28,7 +23,6 @@ class NetworkModule {
 
   @Provides
   fun provideRetrofit(
-    @Named("endpoint") endpoint: String,
     gson: Gson,
     callFactory: Call.Factory
   ): Retrofit =
@@ -45,7 +39,4 @@ class NetworkModule {
       .Builder()
       .build()
 
-  @PerApplication
-  @Provides
-  fun provideGson(): Gson = GsonBuilder().create()
 }

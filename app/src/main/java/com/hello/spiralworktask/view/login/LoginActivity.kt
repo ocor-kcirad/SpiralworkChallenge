@@ -1,12 +1,18 @@
 package com.hello.spiralworktask.view.login
 
+import android.arch.lifecycle.ViewModelProvider
 import android.os.Bundle
 import com.hello.spiralworktask.R
 import com.hello.spiralworktask.libs.android.BaseActivity
+import com.hello.spiralworktask.libs.ext.getViewModel
 import com.hello.spiralworktask.libs.ext.inTransaction
+import com.hello.spiralworktask.libs.ext.observe
 import com.hello.spiralworktask.libs.ext.replaceFragment
+import com.hello.spiralworktask.libs.ext.withViewModel
 import com.hello.spiralworktask.navigation.RegisterPageNavigator
 import com.hello.spiralworktask.navigation.WelcomePageNavigator
+import com.hello.spiralworktask.view.login.LoginViewModel.SessionState.Resumed
+import com.hello.spiralworktask.view.login.LoginViewModel.SessionState.Started
 import com.hello.spiralworktask.view.login.emaillogin.EmailLoginFragment
 import com.hello.spiralworktask.view.login.emaillogin.EmailLoginFragment.EmailLoginInteraction
 import com.hello.spiralworktask.view.login.forgotpassword.ForgotPasswordFragment
@@ -22,11 +28,29 @@ class LoginActivity : BaseActivity(),
 
   @Inject lateinit var welcomePageNavigator: WelcomePageNavigator
   @Inject lateinit var registerPageNavigator: RegisterPageNavigator
+  @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_login)
     replaceFragment(R.id.fragmentContainer, LoginMainFragment.newInstance())
+    observeViewModel()
+    getViewModel<LoginViewModel>(viewModelFactory).checkSession()
+  }
+
+  private fun observeViewModel() {
+    withViewModel<LoginViewModel>(viewModelFactory) {
+      observe(sessionState) {
+        when (it) {
+          Started -> {
+            welcomePageNavigator.navigate(this@LoginActivity)
+          }
+          Resumed -> {
+            welcomePageNavigator.navigate(this@LoginActivity)
+          }
+        }
+      }
+    }
   }
 
   override fun onLoginClicked() {
@@ -60,7 +84,7 @@ class LoginActivity : BaseActivity(),
   }
 
   override fun onLoginSuccess() {
-    welcomePageNavigator.navigate(this)
+    getViewModel<LoginViewModel>(viewModelFactory).startSession()
   }
 
   override fun onCloseButtonClicked() {

@@ -2,14 +2,14 @@ package com.hello.spiralworktask.view.login.emaillogin
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import com.hello.spiralworktask.domain.usecase.LoginUserUseCase
+import com.hello.spiralworktask.usecase.LoginUserUseCase
 import com.hello.spiralworktask.libs.arch.BaseViewModel
 import com.hello.spiralworktask.libs.ext.isValidEmail
 import com.hello.spiralworktask.model.Credentials
 import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.Error
 import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.Invalid
-import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.LoggedIn
 import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.LoggingIn
+import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.Success
 import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.Validated
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.processors.PublishProcessor
@@ -51,6 +51,18 @@ class EmailLoginViewModel @Inject constructor(private val loginUserUseCase: Logi
     )
   }
 
+  fun submitLoginDetails() {
+    loginStateLiveData.value = LoggingIn
+    val credentials = Credentials(email!!.toString(), password!!.toString())
+    disposableContainer.add(
+        loginUserUseCase.post(credentials)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { loginStateLiveData.value = Success },
+                { loginStateLiveData.value = Error })
+    )
+  }
+
   private fun validateInputs(
     email: CharSequence,
     password: CharSequence
@@ -60,24 +72,12 @@ class EmailLoginViewModel @Inject constructor(private val loginUserUseCase: Logi
     return isEmailAcceptable && isPasswordAcceptable
   }
 
-  fun submitLoginDetails() {
-    loginStateLiveData.value = LoggingIn
-    val credentials = Credentials(email!!.toString(), password!!.toString())
-    disposableContainer.add(
-        loginUserUseCase.post(credentials)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { loginStateLiveData.value = LoggedIn },
-                { loginStateLiveData.value = Error })
-    )
-  }
-
   sealed class LoginState(
     val progressVisibility: Boolean,
     val fabEnabled: Boolean
   ) {
     object LoggingIn : LoginState(true, false)
-    object LoggedIn : LoginState(false, false)
+    object Success : LoginState(false, false)
     object Validated : LoginState(false, true)
     object Invalid : LoginState(false, false)
     object Error : LoginState(false, true)

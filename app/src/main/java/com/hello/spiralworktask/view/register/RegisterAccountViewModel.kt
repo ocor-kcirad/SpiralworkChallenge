@@ -3,8 +3,8 @@ package com.hello.spiralworktask.view.register
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
-import com.hello.spiralworktask.domain.usecase.CheckEmailAvailabilityUseCase
-import com.hello.spiralworktask.domain.usecase.CreateUserUseCase
+import com.hello.spiralworktask.usecase.CheckEmailAvailabilityUseCase
+import com.hello.spiralworktask.usecase.CreateUserUseCase
 import com.hello.spiralworktask.libs.arch.BaseViewModel
 import com.hello.spiralworktask.libs.arch.Resource
 import com.hello.spiralworktask.libs.ext.isValidEmail
@@ -130,7 +130,7 @@ class RegisterAccountViewModel @Inject constructor(
     disposableContainer.add(
         createUserUseCase.post(signupDetails)
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ accountCreationLiveData.value = Resource.success(it) },
+            .subscribe({ accountCreationLiveData.value = Resource.success() },
                 {
                   accountCreationLiveData.value =
                       Resource.error("Something went wrong. Please try again.")
