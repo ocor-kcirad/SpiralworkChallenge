@@ -15,6 +15,10 @@ buildscript {
     }
 }
 
+plugins {
+    id "com.moowork.node" version "1.2.0"
+}
+
 allprojects {
     repositories {
         google()
@@ -25,3 +29,8 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+task startServer(type: NodeTask) {
+    script = file('index.js')
+}
+
