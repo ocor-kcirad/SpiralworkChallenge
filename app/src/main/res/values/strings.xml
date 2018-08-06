@@ -1,0 +1,22 @@
+<resources>
+  <string name="app_name">SpiralworkTask</string>
+  <string name="label_subheader_forgot_password">Enter your email to\nfind your account.</string>
+  <string name="label_login">Log in</string>
+  <string name="label_forgot_password">Forgot password?</string>
+  <string name="label_email_address">Email Address</string>
+  <string name="label_password">Password</string>
+  <string name="label_show">Show</string>
+  <string name="label_hide">Hide</string>
+  <string name="label_header_ask_name">What\'s your name?</string>
+  <string name="label_first_name">First Name</string>
+  <string name="label_last_name">Last Name</string>
+  <string name="label_header_ask_email">And, your email?</string>
+  <string name="label_header_create_password">Create a password</string>
+  <string name="label_sub_header_create_password">Your password must include at\nleast one letter, one number and be 8 or more\ncharacters long.</string>
+  <string name="label_welcome">Welcome.</string>
+  <string name="label_create_account">Create Account</string>
+
+  <!-- TODO: Remove or change this placeholder text -->
+  <string name="hello_blank_fragment">Hello blank fragment</string>
+  <string name="user_greetings">Hi %1$s %2$s</string>
+</resources>
