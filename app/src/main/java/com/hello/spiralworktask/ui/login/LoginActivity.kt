@@ -15,16 +15,13 @@ import com.hello.spiralworktask.ui.login.LoginViewModel.SessionState.Resumed
 import com.hello.spiralworktask.ui.login.LoginViewModel.SessionState.Started
 import com.hello.spiralworktask.ui.login.emaillogin.EmailLoginFragment
 import com.hello.spiralworktask.ui.login.emaillogin.EmailLoginFragment.EmailLoginInteraction
-import com.hello.spiralworktask.ui.login.forgotpassword.ForgotPasswordFragment
-import com.hello.spiralworktask.ui.login.forgotpassword.ForgotPasswordFragment.ForgotPasswordInteraction
 import com.hello.spiralworktask.ui.login.loginmain.LoginMainFragment
 import com.hello.spiralworktask.ui.login.loginmain.LoginMainFragment.LoginMainInteraction
 import javax.inject.Inject
 
 class LoginActivity : BaseActivity(),
     LoginMainInteraction,
-    EmailLoginInteraction,
-    ForgotPasswordInteraction {
+    EmailLoginInteraction {
 
   @Inject lateinit var welcomePageNavigator: WelcomePageNavigator
   @Inject lateinit var registerPageNavigator: RegisterPageNavigator
@@ -66,21 +63,6 @@ class LoginActivity : BaseActivity(),
 
   override fun onCreateAccountClicked() {
     registerPageNavigator.navigate(this)
-  }
-
-  override fun onForgotPasswordClicked() {
-    supportFragmentManager.inTransaction {
-      setCustomAnimations(
-          R.anim.enter_from_right, R.anim.exit_to_left,
-          R.anim.enter_from_left, R.anim.exit_to_right
-      )
-      replace(R.id.fragmentContainer, ForgotPasswordFragment.newInstance())
-      addToBackStack(null)
-    }
-  }
-
-  override fun onRequestPassword(email: String) {
-
   }
 
   override fun onLoginSuccess() {

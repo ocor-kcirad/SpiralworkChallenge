@@ -19,18 +19,6 @@
       app:layout_constraintTop_toTopOf="parent"
       app:navigationIcon="@drawable/ic_back"
       >
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/forgotPasswordTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="end"
-        android:background="?selectableItemBackground"
-        android:fontFamily="@font/lato_bold"
-        android:gravity="center"
-        android:padding="@dimen/material_baseline_grid_2x"
-        android:text="@string/label_forgot_password"
-        android:textColor="@color/material_color_white"
-        />
 
   </android.support.v7.widget.Toolbar>
 

@@ -6,7 +6,6 @@ import com.hello.spiralworktask.libs.di.ViewModelFactory
 import com.hello.spiralworktask.libs.di.ViewModelKey
 import com.hello.spiralworktask.ui.login.LoginViewModel
 import com.hello.spiralworktask.ui.login.emaillogin.EmailLoginViewModel
-import com.hello.spiralworktask.ui.login.forgotpassword.ForgotPasswordViewModel
 import com.hello.spiralworktask.ui.register.RegisterAccountViewModel
 import com.hello.spiralworktask.ui.welcome.WelcomeUserViewModel
 import dagger.Binds
@@ -39,8 +38,4 @@ abstract class ViewModelModule {
   @ViewModelKey(WelcomeUserViewModel::class)
   abstract fun bindWelcomeUserViewModel(viewModel: WelcomeUserViewModel): ViewModel
 
-  @Binds
-  @IntoMap
-  @ViewModelKey(ForgotPasswordViewModel::class)
-  abstract fun bindForgotPasswordViewModel(viewModel: ForgotPasswordViewModel): ViewModel
 }

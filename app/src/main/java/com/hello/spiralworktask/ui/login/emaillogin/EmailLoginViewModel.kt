@@ -1,4 +1,4 @@
-package com.hello.spiralworktask.view.login.emaillogin
+package com.hello.spiralworktask.ui.login.emaillogin
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
@@ -7,11 +7,11 @@ import com.hello.spiralworktask.libs.arch.BaseViewModel
 import com.hello.spiralworktask.libs.ext.isValidEmail
 import com.hello.spiralworktask.model.Credentials
 import com.hello.spiralworktask.usecase.LoginUserUseCase
-import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.Error
-import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.Invalid
-import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.LoggingIn
-import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.Success
-import com.hello.spiralworktask.view.login.emaillogin.EmailLoginViewModel.LoginState.Validated
+import com.hello.spiralworktask.ui.login.emaillogin.EmailLoginViewModel.LoginState.Error
+import com.hello.spiralworktask.ui.login.emaillogin.EmailLoginViewModel.LoginState.Invalid
+import com.hello.spiralworktask.ui.login.emaillogin.EmailLoginViewModel.LoginState.LoggingIn
+import com.hello.spiralworktask.ui.login.emaillogin.EmailLoginViewModel.LoginState.Success
+import com.hello.spiralworktask.ui.login.emaillogin.EmailLoginViewModel.LoginState.Validated
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.processors.PublishProcessor
 import io.reactivex.rxkotlin.Flowables

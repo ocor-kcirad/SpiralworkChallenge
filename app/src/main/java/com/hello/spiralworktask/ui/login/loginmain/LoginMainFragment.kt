@@ -1,4 +1,4 @@
-package com.hello.spiralworktask.view.login.loginmain
+package com.hello.spiralworktask.ui.login.loginmain
 
 import android.content.Context
 import android.os.Bundle
