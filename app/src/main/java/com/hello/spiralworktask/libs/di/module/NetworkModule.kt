@@ -1,7 +1,6 @@
 package com.hello.spiralworktask.libs.di.module
 
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.hello.spiralworktask.libs.di.scopes.PerApplication
 import com.hello.spiralworktask.libs.net.APIService
 import dagger.Module

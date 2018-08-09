@@ -13,7 +13,6 @@ internal abstract class LoginModule {
   @ContributesAndroidInjector()
   abstract fun bindEmailLoginFragment(): EmailLoginFragment
 
-
   @PerFragment
   @ContributesAndroidInjector()
   abstract fun bindLoginMainFragment(): LoginMainFragment

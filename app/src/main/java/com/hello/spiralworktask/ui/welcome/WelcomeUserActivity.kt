@@ -52,7 +52,8 @@ class WelcomeUserActivity : BaseActivity() {
       }
       observe(user) {
         it?.let {
-          greetingsTextView.text = getString(R.string.user_greetings, it.firstName, it.lastName)
+          greetingsTextView.text =
+              getString(R.string.label_user_greetings, it.firstName, it.lastName)
         }
       }
     }

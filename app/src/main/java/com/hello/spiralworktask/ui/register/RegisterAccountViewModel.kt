@@ -8,8 +8,6 @@ import com.hello.spiralworktask.libs.ext.isValidEmail
 import com.hello.spiralworktask.libs.ext.isValidPassword
 import com.hello.spiralworktask.model.AccessToken
 import com.hello.spiralworktask.model.SignupDetails
-import com.hello.spiralworktask.usecase.CheckEmailAvailabilityUseCase
-import com.hello.spiralworktask.usecase.CreateUserUseCase
 import com.hello.spiralworktask.ui.register.RegisterAccountViewModel.EmailInputState.EmailAccepted
 import com.hello.spiralworktask.ui.register.RegisterAccountViewModel.EmailInputState.ErrorEmailVerification
 import com.hello.spiralworktask.ui.register.RegisterAccountViewModel.EmailInputState.InvalidEmail
@@ -17,6 +15,8 @@ import com.hello.spiralworktask.ui.register.RegisterAccountViewModel.PasswordInp
 import com.hello.spiralworktask.ui.register.RegisterAccountViewModel.PasswordInputState.PasswordAccepted
 import com.hello.spiralworktask.ui.register.RegisterAccountViewModel.UserInputState.InvalidUserDetail
 import com.hello.spiralworktask.ui.register.RegisterAccountViewModel.UserInputState.UserDetailAccepted
+import com.hello.spiralworktask.usecase.CheckEmailAvailabilityUseCase
+import com.hello.spiralworktask.usecase.CreateUserUseCase
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.processors.PublishProcessor
@@ -46,33 +46,25 @@ class RegisterAccountViewModel @Inject constructor(
 
   var firstName: CharSequence? = null
     set(value) {
-      if (field == null) {
-        field = value
-      }
+      field = value
       firstNamePublisher.onNext(value)
     }
 
   var lastName: CharSequence? = null
     set(value) {
-      if (field == null) {
-        field = value
-      }
+      field = value
       lastNamePublisher.onNext(value)
     }
 
   var email: CharSequence? = null
     set(value) {
-      if (field == null) {
-        field = value
-      }
+      field = value
       emailPublisher.onNext(value)
     }
 
   var password: CharSequence? = null
     set(value) {
-      if (field == null) {
-        field = value
-      }
+      field = value
       passwordPublisher.onNext(value)
     }
 
@@ -84,16 +76,15 @@ class RegisterAccountViewModel @Inject constructor(
 
     val maybeValidEmail = Flowable.fromPublisher(emailPublisher)
         .filter { it.isValidEmail() }
-        .flatMapSingle {
+        .flatMapSingle { email ->
           checkEmailAvailabilityUseCase
-              .post(it.toString())
+              .post(email.toString())
               .map<EmailInputState> { EmailAccepted }
               .onErrorReturn {
                 if (it is IOException)
                   ErrorEmailVerification("Cannot connect to server")
                 else
                   ErrorEmailVerification("Email is already taken")
-
               }
         }
 

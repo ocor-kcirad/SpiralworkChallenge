@@ -7,6 +7,13 @@
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     <item name="colorAccent">@color/colorAccent</item>
     <item name="colorControlHighlight">@color/colorAccent</item>
+    <item name="android:windowBackground">@drawable/bg_main_gradient</item>
+    <item name="alertDialogTheme">@style/AppDialogTheme</item>
+  </style>
+
+  <style name="AppDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <item name="colorAccent">@color/colorAccent</item>
+    <item name="android:textColorPrimary">@color/material_color_grey_800</item>
   </style>
 
 </resources>

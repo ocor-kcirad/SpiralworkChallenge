@@ -4,8 +4,6 @@ import android.arch.lifecycle.ViewModelProvider
 import android.content.Context
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v4.content.ContextCompat
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
@@ -15,7 +13,7 @@ import com.hello.spiralworktask.R
 import com.hello.spiralworktask.libs.android.BaseFragment
 import com.hello.spiralworktask.libs.ext.getViewModel
 import com.hello.spiralworktask.libs.ext.observe
-import com.hello.spiralworktask.libs.ext.snackError
+import com.hello.spiralworktask.libs.ext.showAlertDialog
 import com.hello.spiralworktask.libs.ext.withViewModel
 import com.hello.spiralworktask.ui.login.emaillogin.EmailLoginViewModel.LoginState.Error
 import com.hello.spiralworktask.ui.login.emaillogin.EmailLoginViewModel.LoginState.Invalid
@@ -29,10 +27,8 @@ import kotlinx.android.synthetic.main.fragment_email_login.confirmFabButton
 import kotlinx.android.synthetic.main.fragment_email_login.confirmProgress
 import kotlinx.android.synthetic.main.fragment_email_login.emailAddressEditText
 import kotlinx.android.synthetic.main.fragment_email_login.passwordEditText
-import kotlinx.android.synthetic.main.fragment_email_login.root
 import kotlinx.android.synthetic.main.fragment_email_login.showPasswordTextView
 import kotlinx.android.synthetic.main.fragment_email_login.toolbar
-import org.jetbrains.anko.backgroundColor
 import javax.inject.Inject
 
 class EmailLoginFragment : BaseFragment() {
@@ -105,10 +101,7 @@ class EmailLoginFragment : BaseFragment() {
                   resources.getColor(R.color.material_color_white_50_percent)
               )
             }
-            root.snackError("Error", "Login Failed. Please try again.", Snackbar.LENGTH_SHORT) {
-              view.backgroundColor = ContextCompat.getColor(context, R.color.material_color_white)
-            }
-
+            showAlertDialog("Error", "Login Failed. Please try again.")
           }
           Validated -> {
             confirmProgress.visibility = View.INVISIBLE

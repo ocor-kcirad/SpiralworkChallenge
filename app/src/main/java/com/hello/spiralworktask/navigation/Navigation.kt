@@ -15,37 +15,38 @@ class WelcomePageNavigator @Inject constructor() {
   fun navigate(
     activity: Activity,
     clearTask: Boolean = false
-  ) {
-    val intent = activity
-        .intentFor<WelcomeUserActivity>()
+  ) = activity.apply {
+
+    val intent = intentFor<WelcomeUserActivity>()
 
     if (clearTask) {
       intent.clearTask()
           .newTask()
     }
 
-    activity.startActivity(intent)
-    activity.finish()
-    activity.overridePendingTransition(R.anim.slide_in_top, 0)
+    startActivity(intent)
+    finish()
+    overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left)
   }
-
 }
 
 class LoginPageNavigator @Inject constructor() {
 
-  fun navigate(activity: Activity) {
-    activity.startActivity(activity.intentFor<LoginActivity>())
-    activity.finish()
-    activity.overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right)
+  fun navigate(activity: Activity) = activity.apply {
+    val intent = intentFor<LoginActivity>()
+    startActivity(intent)
+    finish()
+    overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right)
   }
 
 }
 
 class RegisterPageNavigator @Inject constructor() {
 
-  fun navigate(activity: Activity) {
-    activity.startActivity(activity.intentFor<RegisterActivity>())
-    activity.overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left)
+  fun navigate(activity: Activity) = activity.apply {
+    val intent = intentFor<RegisterActivity>()
+    startActivity(intent)
+    overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left)
   }
 
 }
