@@ -78,7 +78,7 @@
       android:foreground="?selectableItemBackground"
       android:gravity="center"
       android:text="@string/label_create_account"
-      android:textColor="#FF5F6D"
+      android:textColor="@color/colorTextButton"
       android:textSize="@dimen/material_typography_regular_button_text_size"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
