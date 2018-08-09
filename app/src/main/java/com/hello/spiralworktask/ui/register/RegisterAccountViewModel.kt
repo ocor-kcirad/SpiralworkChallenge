@@ -76,16 +76,15 @@ class RegisterAccountViewModel @Inject constructor(
 
     val maybeValidEmail = Flowable.fromPublisher(emailPublisher)
         .filter { it.isValidEmail() }
-        .flatMapSingle {
+        .flatMapSingle { email ->
           checkEmailAvailabilityUseCase
-              .post(it.toString())
+              .post(email.toString())
               .map<EmailInputState> { EmailAccepted }
               .onErrorReturn {
                 if (it is IOException)
                   ErrorEmailVerification("Cannot connect to server")
                 else
                   ErrorEmailVerification("Email is already taken")
-
               }
         }
 
