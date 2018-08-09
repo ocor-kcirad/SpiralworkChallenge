@@ -2,12 +2,12 @@ package com.hello.spiralworktask.ui.login
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import com.hello.spiralworktask.usecase.CheckSessionUseCase
-import com.hello.spiralworktask.usecase.StartSessionUseCase
 import com.hello.spiralworktask.libs.arch.BaseViewModel
 import com.hello.spiralworktask.ui.login.LoginViewModel.SessionState.NoSession
 import com.hello.spiralworktask.ui.login.LoginViewModel.SessionState.Resumed
 import com.hello.spiralworktask.ui.login.LoginViewModel.SessionState.Started
+import com.hello.spiralworktask.usecase.CheckSessionUseCase
+import com.hello.spiralworktask.usecase.StartSessionUseCase
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(

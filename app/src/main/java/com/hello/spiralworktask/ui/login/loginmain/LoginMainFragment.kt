@@ -12,7 +12,6 @@ import com.jakewharton.rxbinding2.view.RxView
 import kotlinx.android.synthetic.main.fragment_login_main.createAccountTextView
 import kotlinx.android.synthetic.main.fragment_login_main.loginTextView
 import kotlinx.android.synthetic.main.fragment_login_main.toolbar
-import javax.inject.Inject
 
 class LoginMainFragment : BaseFragment() {
 
